@@ -15,6 +15,8 @@ const int NBMAXP = 2; // Constante permettant de modifier le nombre de joueurs m
 typedef char t_fmarq[MAXY][MAXX][MAXMOT];
 typedef int t_de[LONGDE];
 
+
+// Cette procédure demande au joueur un par un quel est leur nom.
 void player(char player1[20], char player2[20]) {
     for (int indice = 0; indice < NBMAXP; indice++) {
         printf("Entrez le nom du joueur %d : ", indice + 1);
@@ -27,6 +29,7 @@ void player(char player1[20], char player2[20]) {
     }
 }
 
+// Cette procédure permet de déterminer quel est le joueur qui doit jouer
 void current_player(char player1[20], char player2[20], char curr_player[20], int tour) {
     if ((tour % 2) == 0) {
         strcpy(curr_player, player1);
@@ -36,6 +39,7 @@ void current_player(char player1[20], char player2[20], char curr_player[20], in
     }
 }
 
+// Cette procédure permet l'affichage de la feuille de marque.
 void aff_f_marq(t_fmarq feuille_marq) {
     for (int i = 0; i < MAXY; i++) {
         for (int j = 0; j < MAXX; j++) {
@@ -46,6 +50,7 @@ void aff_f_marq(t_fmarq feuille_marq) {
     printf("\n");
 }
 
+// Cette procédure permet l'affichage des dés.
 void aff_des(t_de des) {
     printf("| ");
     for (int i = 0; i < LONGDE; i++) {
@@ -55,6 +60,7 @@ void aff_des(t_de des) {
     printf("\n");
 }
 
+// Cette procédure permet de lancer aléatoirement les dés, elle est utilsé en début de tour.
 int lancer_de(t_de des) {
     srand(time(NULL));
     printf("| ");
@@ -66,6 +72,8 @@ int lancer_de(t_de des) {
     printf("\n");
 }
 
+/* Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés.Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
+Si la réponse du joueur au moment de la demande de relance n'est pas admise, le programme reposera la question. */
 int bloq_de(t_de des) {
     int nb_de, de, try;
     char answer[4];
@@ -100,6 +108,7 @@ int bloq_de(t_de des) {
     aff_des(des);
 }
 
+// Cette procédure permet de remettre les dés à zéro et sera exploitée à la fin de chaque tour pour assurer l'aléatoire
 void reset(t_de des) {
     for (int indice = 0; indice < LONGDE; indice++)
         des[indice] = 0;
@@ -110,12 +119,15 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
     *somme_low = 0; *somme_mid = 0; *somme_high = 0;
     *compt_low = 0; *compt_mid = 0; *compt_high = 0;
 
+    // Recherche de 6 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     for (int indice6 = 0; indice6 < LONGDE ^ somme6 == false; indice6++) {
         if (des[indice6] == 6) {
             *compt_high = *compt_high + 1;
             *somme_high = *somme_high + des[indice6];
         }
     }
+
+    // Recherche de 5 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     if (*compt_high == 0) {
         for (int indice5 = 0; indice5 < LONGDE ^ somme5 == false; indice5++) {
             if (des[indice5] == 5) {
@@ -132,6 +144,8 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
             }
         }
     }
+
+    // Recherche de 4 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     if (*compt_high == 0) {
         for (int indice4 = 0; indice4 < LONGDE ^ somme4 == false; indice4++) {
             if (des[indice4] == 4) {
@@ -156,6 +170,8 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
             }
         }
     }
+
+    // Recherche de 3 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     if (*compt_high == 0) {
         for (int indice3 = 0; indice3 < LONGDE ^ somme3 == false; indice3++) {
             if (des[indice3] == 3) {
@@ -180,6 +196,8 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
             }
         }
     }
+
+    // Recherche de 2 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     if (*compt_high == 0) {
         for (int indice2 = 0; indice2 < LONGDE ^ somme2 == false; indice2++) {
             if (des[indice2] == 2) {
@@ -204,6 +222,8 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
             }
         }
     }
+
+    // Recherche de 1 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     if (*compt_high == 0) {
         for (int indice1 = 0; indice1 < LONGDE ^ somme1 == false; indice1++) {
             if (des[indice1] == 1) {
