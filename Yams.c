@@ -230,6 +230,146 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
     }
 }
 
+void somme_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance) {
+    trie_de(des);
+
+    // Recherche de la présence de YAMS dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    if (compt_high == 5 && yams == true) {
+        *somme_high_spe == 50;
+    }
+
+    // Recherche de la présence de GRANDE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    if (*somme_high_spe == 0 && gdsuite == true) {
+        if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
+            *somme_high_spe = 40
+        }
+    }
+    else if(gdsuite == true){
+        if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
+            *somme_mid_spe =  40;
+        }
+    }
+
+    // Recherche de la présence de PETITE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    if (*somme_high_spe == 0 && ptsuite == true) {
+        if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
+            *somme_high_spe = 30;
+        }
+        else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
+            *somme_high_spe = 30;
+        }
+    }
+    else if (*somme_mid_spe == 0 && ptsuite == true) {
+        if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
+            *somme_mid_spe = 30;
+        }
+        else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
+            *somme_mid_spe = 30;
+        }
+    }
+    else if (ptsuite == true) {
+        if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
+            *somme_low_spe = 30;
+        }
+        else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
+            *somme_low_spe = 30;
+        }
+    }
+
+    // Recherche de la présence de FULLHOUSE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    if (*somme_high_spe == 0 && fullhouse == true) {
+        if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
+            *somme_high_spe = 25;
+        }
+    }
+    else if (*somme_mid_spe == 0 && fullhouse == true) {
+        if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
+            *somme_mid_spe = 25;
+        }
+    }
+    else if (*somme_low_spe == 0 && fullhouse == true) {
+        if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
+            *somme_high_spe = 25;
+        }
+    }
+    if (*somme_high_spe == 0 && fullhouse == true) {
+        if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
+            *somme_high_spe = 25;
+        }
+    }
+    else if (*somme_mid_spe == 0 && fullhouse == true) {
+        if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
+            *somme_mid_spe = 25;
+        }
+    }
+    else if (*somme_low_spe == 0 && fullhouse == true) {
+        if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
+            *somme_high_spe = 25;
+        }
+    }
+
+    // Recherche de la présence de CARRÉ dans la suite de dés selon si celui-ci a déjà été choisi par le joueur ou non
+    if (*somme_high_spe == 0 && carre == true) {
+        if (compt_high == 4) {
+            *somme_high_spe = somme_high;
+        }
+        else if (compt_mid == 4) {
+            *somme_high_spe = somme_mid;
+        }
+    }
+    else if (*somme_mid_spe == 0 && carre == true) {
+        if (compt_high == 4) {
+            *somme_mid_spe = somme_high;
+        }
+        else if (compt_mid == 4) {
+            *somme_mid_spe = somme_mid;
+        }
+    }
+    else if (*somme_low_spe == 0 && carre == true) {
+        if (compt_high == 4) {
+            *somme_low_spe = somme_high;
+        }
+        else if (compt_mid == 4) {
+            *somme_low_spe = somme_mid;
+        }
+    }
+
+    // Recherche de la présence de BRELAN dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    if (*somme_high_spe == 0 && brelan == true) {
+        if (compt_high == 3) {
+            *somme_high_spe = somme_high;
+        }
+        else if (compt_mid == 3) {
+            *somme_high_spe = somme_mid;
+        }
+        else if (compt_low == 3) {
+            *somme_high_spe = somme_low;
+        }
+    }
+    else if (*somme_mid_spe == 0 && brelan == true) {
+        if (compt_high == 3) {
+            *somme_mid_spe = somme_high;
+        }
+        else if (compt_mid == 3) {
+            *somme_mid_spe = somme_mid;
+        }
+        else if (compt_low == 3) {
+            *somme_mid_spe = somme_low;
+        }
+    }
+    else if (*somme_low_spe == 0 && brelan == true) {
+        if (compt_high == 3) {
+            *somme_low_spe = somme_high;
+        }
+        else if (compt_mid == 3) {
+            *somme_low_spe = somme_mid;
+        }
+        else if (compt_low == 3) {
+            *somme_low_spe = somme_low;
+        }
+    }
+}
+
 int main() {
     t_fmarq feuille_marq = {
         "YAMS                ", "J1   ", "   J2",
