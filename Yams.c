@@ -8,6 +8,7 @@
 #define MAXX 3
 #define MAXY 18
 #define MAXMOT 22
+#define NBSUM 6
 
 const int MAXDE = 6; // Utilisé dans la randomisation du chiffre des dés
 const int NBMAXP = 2; // Constante permettant de modifier le nombre de joueurs max
@@ -58,6 +59,20 @@ void aff_des(t_de des) {
         printf(" | ");
     }
     printf("\n");
+}
+
+// Permet de trier les dés pour la procédure des combinaisons spéciales
+void trie(t_de des) {
+    int tmp;
+    for(int indice_i = 0; indice_i < LONGDE; indice_i ++) {
+        for(int indice_j = 0; indice_j < LONGDE; indice_j ++) {
+            if( des[indice_j] > des[indice_j + 1]) {
+                tmp = des[indice_j];
+                des[indice_j] = des[indice_j + 1];
+                des[indice_j + 1] = tmp;
+            }
+        }
+    }
 }
 
 // Cette procédure permet de lancer aléatoirement les dés, elle est utilsé en début de tour.
@@ -115,7 +130,7 @@ void reset(t_de des) {
 }
 
 
-void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt_high, int* compt_mid, int* compt_low, bool somme6, bool somme5, bool somme4, bool somme3, bool somme2, bool somme1) {
+void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt_high, int* compt_mid, int* compt_low, bool somme6, bool somme5, bool somme4, bool somme3, bool somme2, bool somme1) {
     *somme_low = 0; *somme_mid = 0; *somme_high = 0;
     *compt_low = 0; *compt_mid = 0; *compt_high = 0;
 
@@ -250,8 +265,8 @@ void somme(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt
     }
 }
 
-void somme_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance) {
-    trie_de(des);
+void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance) {
+    trie(des);
 
     // Recherche de la présence de YAMS dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (compt_high == 5 && yams == true) {
@@ -261,7 +276,7 @@ void somme_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low
     // Recherche de la présence de GRANDE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (*somme_high_spe == 0 && gdsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
-            *somme_high_spe = 40
+            *somme_high_spe = 40;
         }
     }
     else if(gdsuite == true){
@@ -390,6 +405,90 @@ void somme_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low
     }
 }
 
+//Cette procédure demande au joueur quelle combinaison il veut jouer
+void combinaison_tour(int somme_high, int somme_mid, int somme_low, int somme_high_spe, int somme_mid_spe, int somme_low_spe, 
+                      int compt_high, int compt_mid, int compt_low, int *choice) {
+
+    if(somme_high_spe == 0){
+        if(somme_mid == 0){
+            printf("Seule combinaison possible : %d\n", somme_high);
+        }
+        else if(somme_low == 0){
+            printf("Combinaison possible numéro 1 : %d\n", somme_high);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid);
+        }
+        else{
+            printf("Combinaison possible numéro 1 : %d\n", somme_high);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid);
+            printf("Combinaison possible numéro 3 : %d\n", somme_low);
+        }
+    }
+    else if(somme_mid_spe == 0){
+        if(somme_mid == 0){
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_high);
+        }
+        else if(somme_low == 0){
+            printf("Combinaison possible numéro 1 : %d\n\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_high);
+            printf("Combinaison possible numéro 3 : %d\n", somme_mid);
+        }
+        else{
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_high);
+            printf("Combinaison possible numéro 3 : %d\n", somme_mid);
+            printf("Combinaison possible numéro 4 : %d\n", somme_low);
+        }
+    }
+    else if(somme_low_spe == 0){
+        if(somme_mid == 0){
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid_spe);
+            printf("Combinaison possible numéro 3 : %d\n", somme_high);
+        }
+        else if(somme_low == 0){
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid_spe);
+            printf("Combinaison possible numéro 3 : %d\n", somme_high);
+            printf("Combinaison possible numéro 4 : %d\n", somme_mid);
+        }
+        else{
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid_spe);
+            printf("Combinaison possible numéro 3 : %d\n", somme_high);
+            printf("Combinaison possible numéro 4 : %d\n", somme_mid);
+            printf("Combinaison possible numéro 5 : %d\n", somme_low);
+        }
+    }
+    else{
+        if(somme_mid == 0){
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid_spe);
+            printf("Combinaison possible numéro 3 : %d\n", somme_low_spe);
+            printf("Combinaison possible numéro 4 : %d\n", somme_high);
+        }
+        else if(somme_low == 0){
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid_spe);
+            printf("Combinaison possible numéro 3 : %d\n", somme_low_spe);
+            printf("Combinaison possible numéro 4 : %d\n", somme_high);
+            printf("Combinaison possible numéro 5 : %d\n", somme_mid);
+        }
+        else{
+            printf("Combinaison possible numéro 1 : %d\n", somme_high_spe);
+            printf("Combinaison possible numéro 2 : %d\n", somme_mid_spe);
+            printf("Combinaison possible numéro 3 : %d\n", somme_low_spe);
+            printf("Combinaison possible numéro 4 : %d\n", somme_high);
+            printf("Combinaison possible numéro 5 : %d\n", somme_mid);
+            printf("Combinaison possible numéro 6 : %d\n", somme_low);
+        }
+    }
+        
+    printf("Quelle combinaison souhaitez vous choisir : ");
+    scanf("%d", &*choice);
+}
+
+
 int main() {
     t_fmarq feuille_marq = {
         "YAMS                ", "J1   ", "   J2",
@@ -416,6 +515,8 @@ int main() {
     int somme_high, somme_mid, somme_low;
     int compt_high, compt_mid, compt_low;
 
+    int p_choice;
+
     bool bool6, bool5, bool4, bool3, bool2, bool1;
 
     bool6 = false;
@@ -424,6 +525,14 @@ int main() {
     bool3 = true;
     bool2 = true;
     bool1 = true;
+
+    brelan = false;
+    carre = true;
+    fullhouse = true;
+    ptsuite = false;
+    gdsuite = true;
+    yams = true;
+    chance = true;
 
     lancer_de(des);
     aff_des(des);
