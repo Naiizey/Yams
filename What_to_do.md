@@ -1,5 +1,7 @@
 # Missing parts : 
 
+- Add the trie process
+
 - Combinaison --> Demande au joueur quelle combinaison il souhaite choisir
 
 - Updtade Feuille Marque --> Update la feuille de marque avec la combinaison choisie par le joueur & met à jour le booléen
