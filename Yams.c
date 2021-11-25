@@ -16,6 +16,16 @@ const int NBMAXP = 2; // Constante permettant de modifier le nombre de joueurs m
 typedef char t_fmarq[MAXY][MAXX][MAXMOT];
 typedef int t_de[LONGDE];
 
+// Cette procédure permet l'affichage de la feuille de marque.
+void aff_f_marq(t_fmarq feuille_marq) {
+    for (int i = 0; i < MAXY; i++) {
+        for (int j = 0; j < MAXX; j++) {
+            printf("%s", feuille_marq[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
 
 // Cette procédure demande au joueur un par un quel est leur nom.
 void player(char player1[20], char player2[20]) {
@@ -38,17 +48,6 @@ void current_player(char player1[20], char player2[20], char curr_player[20], in
     else {
         strcpy(curr_player, player2);
     }
-}
-
-// Cette procédure permet l'affichage de la feuille de marque.
-void aff_f_marq(t_fmarq feuille_marq) {
-    for (int i = 0; i < MAXY; i++) {
-        for (int j = 0; j < MAXX; j++) {
-            printf("%s", feuille_marq[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
 }
 
 // Cette procédure permet l'affichage des dés.
@@ -75,7 +74,7 @@ void trie(t_de des) {
     }
 }
 
-// Cette procédure permet de lancer aléatoirement les dés, elle est utilsé en début de tour.
+// Cette procédure permet de lancer aléatoirement les dés puis de les afficher. Elle est utilsée en début de tour.
 int lancer_de(t_de des) {
     srand(time(NULL));
     for (int i = 0; i < LONGDE; i++) {
@@ -488,24 +487,26 @@ void combinaison_tour(int somme_high, int somme_mid, int somme_low, int somme_hi
 
 int main() {
     t_fmarq feuille_marq = {
-        "YAMS                ", "J1   ", "   J2",
-        "1 Total de 1        ", "     ", "     ",
-        "2 Total de 2        ", "     ", "     ",
-        "3 Total de 3        ", "     ", "     ",
-        "4 Total de 4        ", "     ", "     ",
-        "5 Total de 5        ", "     ", "     ",
-        "6 Total de 6        ", "     ", "     ",
-        "Bonus si > à 62 [35]", "     ", "     ",
-        "Total supérieur     ", "     ", "     ",
-        "Brelan       [Total]", "     ", "     ",
-        "Carré        [Total]", "     ", "     ",
-        "FullHouse    [Total]", "     ", "     ",
-        "Petite Suite [Total]", "     ", "     ",
-        "Grande Suite [Total]", "     ", "     ",
-        "YAMS         [Total]", "     ", "     ",
-        "Chance       [Total]", "     ", "     ",
-        "Total inférieur     ", "     ", "     ",
-        "Total               ", "     ", "     ",
+        "┌-------------------","-┬---------","-┬-------┐",
+        "|YAMS                ","|\t\t","|\t|",
+        "|1 Total de 1        ","|\t\t","|\t|",
+        "|2 Total de 2        ","|\t\t","|\t|",
+        "|3 Total de 3        ","|\t\t","|\t|",
+        "|4 Total de 4        ","|\t\t","|\t|",
+        "|5 Total de 5        ","|\t\t","|\t|",
+        "|6 Total de 6        ","|\t\t","|\t|",
+        "|Bonus si > à 62 [35]","|\t\t","|\t|",
+        "|Total supérieur     ","|\t\t","|\t|",
+        "|Brelan       [Total]","|\t\t","|\t|",
+        "|Carré        [Total]","|\t\t","|\t|",
+        "|FullHouse    [Total]","|\t\t","|\t|",
+        "|Petite Suite [Total]","|\t\t","|\t|",
+        "|Grande Suite [Total]","|\t\t","|\t|",
+        "|YAMS         [Total]","|\t\t","|\t|",
+        "|Chance       [Total]","|\t\t","|\t|",
+        "|Total inférieur     ","|\t\t","|\t|",
+        "|Total               ","|\t\t","|\t|",
+        "└-------------------","-┴---------","-┴-------┘",
     };
 
     t_de des;
@@ -516,26 +517,9 @@ int main() {
 
     bool bool6, bool5, bool4, bool3, bool2, bool1;
 
-    bool6 = false;
-    bool5 = true;
-    bool4 = false;
-    bool3 = true;
-    bool2 = true;
-    bool1 = true;
+    bool6 = true; bool5 = true; bool4 = true; bool3 = true; bool2 = true; bool1 = true;
 
-    brelan = false;
-    carre = true;
-    fullhouse = true;
-    ptsuite = false;
-    gdsuite = true;
-    yams = true;
-    chance = true;
+    brelan = true; carre = true; fullhouse = true; ptsuite = true; gdsuite = true; yams = true; chance = true;
 
     lancer_de(des);
-    aff_des(des);
-
-    somme(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, bool6, bool5, bool4, bool3, bool2, bool1);
-    printf("%d, %d, %d\n%d, %d, %d", somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low);
-
-    return EXIT_SUCCESS;
 }
