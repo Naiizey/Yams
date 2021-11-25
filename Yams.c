@@ -78,13 +78,10 @@ void trie(t_de des) {
 // Cette procédure permet de lancer aléatoirement les dés, elle est utilsé en début de tour.
 int lancer_de(t_de des) {
     srand(time(NULL));
-    printf("| ");
     for (int i = 0; i < LONGDE; i++) {
         des[i] = 1 + rand() % MAXDE;
-        printf("%d", des[i]);
-        printf(" | ");
     }
-    printf("\n");
+    aff_des(des)
 }
 
 /* Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés.Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
