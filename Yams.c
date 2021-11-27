@@ -448,6 +448,11 @@ void combinaison_tour(int somme_high, int somme_mid, int somme_low, int somme_hi
     scanf("%d", &*choice);
 }
 
+//Cette procédure mets à jour la feuille de marque après le choix du joueur
+void update_feuille_marq(t_fmarq feuille_marq ,int *somme_high_spe, int *somme_high, int *somme_mid_spe, int *somme_mid, int *somme_low_spe, int *somme_low, int *choice){
+    
+}
+
 
 int main() {
     t_fmarq feuille_marq = {
