@@ -135,6 +135,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         if (des[indice6] == 6) {
             *compt_high = *compt_high + 1;
             *somme_high = *somme_high + des[indice6];
+            printf("La combinaison SOMME DE 6 est disponible pour %d points", *somme_high);
+            printf("Tapez 6 pour la choisir !");
         }
     }
 
@@ -144,6 +146,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice5] == 5) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice5];
+                printf("La combinaison SOMME DE 5 est disponible pour %d points", *somme_high);
+                printf("Tapez 5 pour la choisir !");
             }
         }
     }
@@ -152,6 +156,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice5] == 5) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice5];
+                printf("La combinaison SOMME DE 5 est disponible pour %d points", *somme_mid);
+                printf("Tapez 5 pour la choisir !");
             }
         }
     }
@@ -162,6 +168,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice4];
+                printf("La combinaison SOMME DE 4 est disponible pour %d points", *somme_high);
+                printf("Tapez 4 pour la choisir !");
             }
         }
     }
@@ -170,6 +178,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice4];
+                printf("La combinaison SOMME DE 4 est disponible pour %d points", *somme_mid);
+                printf("Tapez 4 pour la choisir !");
             }
         }
     }
@@ -178,6 +188,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice4];
+                printf("La combinaison SOMME DE 4 est disponible pour %d points", *somme_low);
+                printf("Tapez 4 pour la choisir !");
             }
         }
     }
@@ -188,6 +200,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice3];
+                printf("La combinaison SOMME DE 3 est disponible pour %d points", *somme_high);
+                printf("Tapez 3 pour la choisir !");
             }
         }
     }
@@ -196,6 +210,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice3];
+                printf("La combinaison SOMME DE 3 est disponible pour %d points", *somme_mid);
+                printf("Tapez 3 pour la choisir !");
             }
         }
     }
@@ -204,6 +220,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice3];
+                printf("La combinaison SOMME DE 3 est disponible pour %d points", *somme_low);
+                printf("Tapez 3 pour la choisir !");
             }
         }
     }
@@ -214,6 +232,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice2];
+                printf("La combinaison SOMME DE 2 est disponible pour %d points", *somme_high);
+                printf("Tapez 2 pour la choisir !");
             }
         }
     }
@@ -222,6 +242,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice2];
+                printf("La combinaison SOMME DE 2 est disponible pour %d points", *somme_mid);
+                printf("Tapez 2 pour la choisir !");
             }
         }
     }
@@ -230,6 +252,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice2];
+                printf("La combinaison SOMME DE 2 est disponible pour %d points", *somme_low);
+                printf("Tapez 2 pour la choisir !");
             }
         }
     }
@@ -240,6 +264,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice1];
+                printf("La combinaison SOMME DE 1 est disponible pour %d points", *somme_high);
+                printf("Tapez 1 pour la choisir !");
             }
         }
     }
@@ -248,6 +274,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice1];
+                printf("La combinaison SOMME DE 1 est disponible pour %d points", *somme_mid);
+                printf("Tapez 1 pour la choisir !");
             }
         }
     }
@@ -256,6 +284,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice1];
+                printf("La combinaison SOMME DE 1 est disponible pour %d points", *somme_mid);
+                printf("Tapez 1 pour la choisir !");
             }
         }
     }
@@ -449,8 +479,14 @@ void combinaison_tour(int somme_high, int somme_mid, int somme_low, int somme_hi
 }
 
 //Cette procédure mets à jour la feuille de marque après le choix du joueur
-void update_feuille_marq(t_fmarq feuille_marq ,int *somme_high_spe, int *somme_high, int *somme_mid_spe, int *somme_mid, int *somme_low_spe, int *somme_low, int *choice){
-    
+void update_feuille_marq(t_fmarq feuille_marq ,int *somme_high_spe, int *somme_high, int *somme_mid_spe, int *somme_mid, int *somme_low_spe, int *somme_low, int *choice,
+                         char curr_player[20], char player1[20], char player2[20]){
+    if(strcmp(curr_player, player1) == 0) {
+        switch(*choice){
+            case 12:
+                feuille_marq[2][15] = 
+        }
+    }
 }
 
 
