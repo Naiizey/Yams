@@ -563,13 +563,279 @@ void combinaison_tour(int somme_high, int somme_mid, int somme_low, int somme_hi
     scanf("%d", &*choice);
 }
 
+void int_to_str(int tab_combi_int[6][2], char tab_combi_str[6][2][5], int indice_x, int indice_y){
+    sprintf(tab_combi_str[indice_y][indice_x], "%d", tab_combi_int[indice_y][indice_x]);
+}
+
 //Cette procédure mets à jour la feuille de marque après le choix du joueur
-void update_feuille_marq(t_fmarq feuille_marq ,int *somme_high_spe, int *somme_high, int *somme_mid_spe, int *somme_mid, int *somme_low_spe, int *somme_low, int *choice,
+void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int tab_combi_int[6][2], int *choice,
                          char curr_player[20], char player1[20], char player2[20]){
     if(strcmp(curr_player, player1) == 0) {
         switch(*choice){
             case 12:
-                feuille_marq[2][15] = 
+                feuille_marq[2][15] = tab_combi_str[3][1];
+                break;
+            case 11:
+                if(tab_combi_int[3][0] == 11){
+                    feuille_marq[2][14] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][1] == 11){
+                    feuille_marq[2][14] = tab_combi_str[4][1];
+                    break;
+                }
+            case 10:
+                if(tab_combi_int[3][0] == 10){
+                    feuille_marq[2][13] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 10){
+                    feuille_marq[2][13] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 10){
+                    feuille_marq[2][13] = tab_combi_str[5][1];
+                    break;
+                }
+            case 9:
+                if(tab_combi_int[3][0] == 9){
+                    feuille_marq[2][12] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 9){
+                    feuille_marq[2][12] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 9){
+                    feuille_marq[2][12] = tab_combi_str[5][1];
+                    break;
+                }
+            case 8:
+                if(tab_combi_int[3][0] == 8){
+                    feuille_marq[2][11] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 8){
+                    feuille_marq[2][11] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 8){
+                    feuille_marq[2][11] = tab_combi_str[5][1];
+                    break;
+                }
+            case 7:
+                if(tab_combi_int[3][0] == 7){
+                    feuille_marq[2][10] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 7){
+                    feuille_marq[2][10] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 7){
+                    feuille_marq[2][10] = tab_combi_str[5][1];
+                    break;
+                }
+            case 6:
+                if(tab_combi_int[0][0] == 6){
+                    feuille_marq[2][7] = tab_combi_str[0][1];
+                    break;
+                }
+            case 5:
+                if(tab_combi_int[0][0] == 5){
+                    feuille_marq[2][6] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 5){
+                    feuille_marq[2][6] = tab_combi_str[1][1];
+                    break;
+                }
+            case 4:
+                if(tab_combi_int[0][0] == 4){
+                    feuille_marq[2][5] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 4){
+                    feuille_marq[2][5] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 4){
+                    feuille_marq[2][5] = tab_combi_str[2][1];
+                    break;
+                }
+            case 3:
+                if(tab_combi_int[0][0] == 3){
+                    feuille_marq[2][4] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 3){
+                    feuille_marq[2][4] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 3){
+                    feuille_marq[2][4] = tab_combi_str[2][1];
+                    break;
+                }
+            case 2:
+                if(tab_combi_int[0][0] == 2){
+                    feuille_marq[2][3] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 2){
+                    feuille_marq[2][3] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 2){
+                    feuille_marq[2][3] = tab_combi_str[2][1];
+                    break;
+                }
+            case 1:
+                if(tab_combi_int[0][0] == 1){
+                    feuille_marq[2][2] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 1){
+                    feuille_marq[2][2] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 1){
+                    feuille_marq[2][2] = tab_combi_str[2][1];
+                    break;
+                }  
+        }
+    }
+    if(strcmp(curr_player, player2) == 0) {
+        switch(*choice){
+            case 12:
+                feuille_marq[2][15] = tab_combi_str[3][1];
+                break;
+            case 11:
+                if(tab_combi_int[3][0] == 11){
+                    feuille_marq[2][14] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][1] == 11){
+                    feuille_marq[2][14] = tab_combi_str[4][1];
+                    break;
+                }
+            case 10:
+                if(tab_combi_int[3][0] == 10){
+                    feuille_marq[2][13] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 10){
+                    feuille_marq[2][13] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 10){
+                    feuille_marq[2][13] = tab_combi_str[5][1];
+                    break;
+                }
+            case 9:
+                if(tab_combi_int[3][0] == 9){
+                    feuille_marq[2][12] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 9){
+                    feuille_marq[2][12] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 9){
+                    feuille_marq[2][12] = tab_combi_str[5][1];
+                    break;
+                }
+            case 8:
+                if(tab_combi_int[3][0] == 8){
+                    feuille_marq[2][11] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 8){
+                    feuille_marq[2][11] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 8){
+                    feuille_marq[2][11] = tab_combi_str[5][1];
+                    break;
+                }
+            case 7:
+                if(tab_combi_int[3][0] == 7){
+                    feuille_marq[2][10] = tab_combi_str[3][1];
+                    break;
+                }
+                else if(tab_combi_int[4][0] == 7){
+                    feuille_marq[2][10] = tab_combi_str[4][1];
+                    break;
+                }
+                else if(tab_combi_int[5][0] == 7){
+                    feuille_marq[2][10] = tab_combi_str[5][1];
+                    break;
+                }
+            case 6:
+                if(tab_combi_int[0][0] == 6){
+                    feuille_marq[2][7] = tab_combi_str[0][1];
+                    break;
+                }
+            case 5:
+                if(tab_combi_int[0][0] == 5){
+                    feuille_marq[2][6] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 5){
+                    feuille_marq[2][6] = tab_combi_str[1][1];
+                    break;
+                }
+            case 4:
+                if(tab_combi_int[0][0] == 4){
+                    feuille_marq[2][5] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 4){
+                    feuille_marq[2][5] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 4){
+                    feuille_marq[2][5] = tab_combi_str[2][1];
+                    break;
+                }
+            case 3:
+                if(tab_combi_int[0][0] == 3){
+                    feuille_marq[2][4] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 3){
+                    feuille_marq[2][4] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 3){
+                    feuille_marq[2][4] = tab_combi_str[2][1];
+                    break;
+                }
+            case 2:
+                if(tab_combi_int[0][0] == 2){
+                    feuille_marq[2][3] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 2){
+                    feuille_marq[2][3] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 2){
+                    feuille_marq[2][3] = tab_combi_str[2][1];
+                    break;
+                }
+            case 1:
+                if(tab_combi_int[0][0] == 1){
+                    feuille_marq[2][2] = tab_combi_str[0][1];
+                    break;
+                }
+                else if(tab_combi_int[1][0] == 1){
+                    feuille_marq[2][2] = tab_combi_str[1][1];
+                    break;
+                }
+                else if(tab_combi_int[2][0] == 1){
+                    feuille_marq[2][2] = tab_combi_str[2][1];
+                    break;
+                }  
         }
     }
 }
