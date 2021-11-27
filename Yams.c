@@ -704,7 +704,7 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
                 }  
         }
     }
-    if(strcmp(curr_player, player2) == 0) {
+    else if(strcmp(curr_player, player2) == 0) {
         switch(*choice){
             case 12:
                 feuille_marq[2][15] = tab_combi_str[3][1];
@@ -840,6 +840,91 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
     }
 }
 
+void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], char player2[20], bool somme6, bool somme5, bool somme4, bool somme3, bool somme2, bool somme1,
+                bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance){
+    if(strcmp(curr_player, player1) == 0){
+        if(strcmp(feuille_marq[2][1],"\t\t") != 0){
+            somme1 = false;
+        }
+        if(strcmp(feuille_marq[3][1],"\t\t") != 0){
+            somme2 = false;
+        }
+        if(strcmp(feuille_marq[4][1],"\t\t") != 0){
+            somme3 = false;
+        }
+        if(strcmp(feuille_marq[5][1],"\t\t") != 0){
+            somme4 = false;
+        }
+        if(strcmp(feuille_marq[6][1],"\t\t") != 0){
+            somme5 = false;
+        }
+        if(strcmp(feuille_marq[7][1],"\t\t") != 0){
+            somme6 = false;
+        }
+        if(strcmp(feuille_marq[10][1],"\t\t") != 0){
+            brelan = false;
+        }
+        if(strcmp(feuille_marq[11][1],"\t\t") != 0){
+            carre = false;
+        }
+        if(strcmp(feuille_marq[12][1],"\t\t") != 0){
+            fullhouse = false;
+        }
+        if(strcmp(feuille_marq[13][1],"\t\t") != 0){
+            ptsuite = false;
+        }
+        if(strcmp(feuille_marq[14][1],"\t\t") != 0){
+            gdsuite = false;
+        }
+        if(strcmp(feuille_marq[15][1],"\t\t") != 0){
+            yams = false;
+        }
+        if(strcmp(feuille_marq[16][1],"\t\t") != 0){
+            chance = false;
+        }
+    }
+    else if(strcmp(curr_player, player1) == 0){
+        if(strcmp(feuille_marq[2][2],"\t\t") != 0){
+            somme1 = false;
+        }
+        if(strcmp(feuille_marq[3][2],"\t\t") != 0){
+            somme2 = false;
+        }
+        if(strcmp(feuille_marq[4][2],"\t\t") != 0){
+            somme3 = false;
+        }
+        if(strcmp(feuille_marq[5][2],"\t\t") != 0){
+            somme4 = false;
+        }
+        if(strcmp(feuille_marq[6][2],"\t\t") != 0){
+            somme5 = false;
+        }
+        if(strcmp(feuille_marq[7][2],"\t\t") != 0){
+            somme6 = false;
+        }
+        if(strcmp(feuille_marq[10][2],"\t\t") != 0){
+            brelan = false;
+        }
+        if(strcmp(feuille_marq[11][2],"\t\t") != 0){
+            carre = false;
+        }
+        if(strcmp(feuille_marq[12][2],"\t\t") != 0){
+            fullhouse = false;
+        }
+        if(strcmp(feuille_marq[13][2],"\t\t") != 0){
+            ptsuite = false;
+        }
+        if(strcmp(feuille_marq[14][2],"\t\t") != 0){
+            gdsuite = false;
+        }
+        if(strcmp(feuille_marq[15][2],"\t\t") != 0){
+            yams = false;
+        }
+        if(strcmp(feuille_marq[16][2],"\t\t") != 0){
+            chance = false;
+        }
+    }
+}
 
 int main() {
     t_fmarq feuille_marq = {
