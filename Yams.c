@@ -137,11 +137,13 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         if (des[indice6] == 6) {
             *compt_high = *compt_high + 1;
             *somme_high = *somme_high + des[indice6];
-            printf("La combinaison SOMME DE 6 est disponible pour %d points\n", *somme_high);
-            printf("Tapez 6 pour la choisir !\n");
             tab_combi[0][0] = 6;
             tab_combi[0][1] = *somme_high;
         }
+    }
+    if(tab_combi[0][0] == 6){   
+        printf("La combinaison SOMME DE 6 est disponible pour %d points\n", *somme_high);
+        printf("Tapez 6 pour la choisir !\n");
     }
 
     // Recherche de 5 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
@@ -150,8 +152,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice5] == 5) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice5];
-                printf("La combinaison SOMME DE 5 est disponible pour %d points\n", *somme_high);
-                printf("Tapez 5 pour la choisir !\n");
                 tab_combi[0][0] = 5;
                 tab_combi[0][1] = *somme_high;
             }
@@ -162,12 +162,18 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice5] == 5) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice5];
-                printf("La combinaison SOMME DE 5 est disponible pour %d points\n", *somme_mid);
-                printf("Tapez 5 pour la choisir !\n");
                 tab_combi[1][0] = 5;
                 tab_combi[1][1] = *somme_mid;
             }
         }
+    }
+    if(tab_combi[0][0] == 5){
+        printf("La combinaison SOMME DE 5 est disponible pour %d points\n", *somme_high);
+        printf("Tapez 5 pour la choisir !\n");
+    }
+    else if(tab_combi[1][0] == 5){
+        printf("La combinaison SOMME DE 5 est disponible pour %d points\n", *somme_mid);
+        printf("Tapez 5 pour la choisir !\n");
     }
 
     // Recherche de 4 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
@@ -176,8 +182,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice4];
-                printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_high);
-                printf("Tapez 4 pour la choisir !\n");
                 tab_combi[0][0] = 4;
                 tab_combi[0][1] = *somme_high;
             }
@@ -188,8 +192,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice4];
-                printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_mid);
-                printf("Tapez 4 pour la choisir !\n");
                 tab_combi[1][0] = 4;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -200,13 +202,24 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice4];
-                printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_low);
-                printf("Tapez 4 pour la choisir !\n");
                 tab_combi[2][0] = 4;
                 tab_combi[2][1] = *somme_low;
             }
         }
     }
+    if(tab_combi[0][0] == 4){
+        printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_high);
+        printf("Tapez 4 pour la choisir !\n");
+    }
+    else if(tab_combi[1][0] == 4){
+        printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_mid);
+        printf("Tapez 4 pour la choisir !\n");
+    }
+    else if(tab_combi[2][0] == 4){
+        printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_low);
+        printf("Tapez 4 pour la choisir !\n");
+    }
+
 
     // Recherche de 3 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
     if (*compt_high == 0) {
@@ -214,8 +227,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice3];
-                printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_high);
-                printf("Tapez 3 pour la choisir !\n");
                 tab_combi[0][0] = 3;
                 tab_combi[0][1] = *somme_high;
             }
@@ -226,8 +237,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice3];
-                printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_mid);
-                printf("Tapez 3 pour la choisir !\n");
                 tab_combi[1][0] = 3;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -238,12 +247,22 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice3];
-                printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_low);
-                printf("Tapez 3 pour la choisir !\n");
                 tab_combi[2][0] = 3;
                 tab_combi[2][1] = *somme_low;
             }
         }
+    }
+    if(tab_combi[0][0] == 3){
+        printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_high);
+        printf("Tapez 3 pour la choisir !\n");
+    }
+    else if(tab_combi[1][0] == 3){
+        printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_mid);
+        printf("Tapez 3 pour la choisir !\n");
+    }
+    else if(tab_combi[2][0] == 3){
+        printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_low);
+        printf("Tapez 3 pour la choisir !\n");
     }
 
     // Recherche de 2 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
@@ -252,8 +271,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice2];
-                printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_high);
-                printf("Tapez 2 pour la choisir !\n");
                 tab_combi[0][0] = 2;
                 tab_combi[0][1] = *somme_high;
             }
@@ -264,8 +281,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice2];
-                printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_mid);
-                printf("Tapez 2 pour la choisir !\n");
                 tab_combi[1][0] = 2;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -276,12 +291,22 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice2];
-                printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_low);
-                printf("Tapez 2 pour la choisir !\n");
                 tab_combi[2][0] = 2;
                 tab_combi[2][1] = *somme_low;
             }
         }
+    }
+    if(tab_combi[0][0] == 2){
+        printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_high);
+        printf("Tapez 2 pour la choisir !\n");
+    }
+    else if(tab_combi[1][0] == 2){
+        printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_mid);
+        printf("Tapez 2 pour la choisir !\n");
+    }
+    else if(tab_combi[2][0] == 2){
+        printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_low);
+        printf("Tapez 2 pour la choisir !\n");
     }
 
     // Recherche de 1 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
@@ -290,8 +315,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice1];
-                printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_high);
-                printf("Tapez 1 pour la choisir !\n");
                 tab_combi[0][0] = 1;
                 tab_combi[0][1] = *somme_high;
             }
@@ -302,8 +325,6 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice1];
-                printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_mid);
-                printf("Tapez 1 pour la choisir !\n");
                 tab_combi[1][0] = 1;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -314,34 +335,45 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice1];
-                printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_mid);
-                printf("Tapez 1 pour la choisir !\n");
                 tab_combi[2][0] = 1;
                 tab_combi[2][1] = *somme_low;
             }
         }
     }
+    if(tab_combi[0][0] == 1){
+        printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_high);
+        printf("Tapez 1 pour la choisir !\n");
+    }
+    else if(tab_combi[1][0] == 1){
+        printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_mid);
+        printf("Tapez 1 pour la choisir !\n");
+    }
+    else if(tab_combi[2][0] == 1){
+        printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_low);
+        printf("Tapez 1 pour la choisir !\n");
+    }
 }
 
 void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, 
                     int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance, int tab_combi[6][2]) {
+    *somme_low_spe = 0; *somme_mid_spe = 0; *somme_high_spe = 0;
     trie(des);
 
     // Recherche de la présence de YAMS dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (compt_high == 5 && yams == true) {
         *somme_high_spe = 50;
-        printf("La combinaison YAMS est disponible pour %d points\n", *somme_high_spe);
-        printf("Tapez 12 pour la choisir !\n");
         tab_combi[3][0] = 12;
         tab_combi[3][1] = *somme_high_spe;
+    }
+    if(tab_combi[3][0] == 12){
+        printf("La combinaison YAMS est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 12 pour la choisir !\n");
     }
 
     // Recherche de la présence de GRANDE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (*somme_high_spe == 0 && gdsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_high_spe = 40;
-            printf("La combinaison GRANDE SUITE est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 11 pour la choisir !\n");
             tab_combi[3][0] = 11;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -349,26 +381,29 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if(gdsuite == true){
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_mid_spe =  40;
-            printf("La combinaison GRANDE SUITE est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 11 pour la choisir !\n");
             tab_combi[4][0] = 11;
             tab_combi[4][1] = *somme_mid_spe;
         }
+    }
+
+    if(tab_combi[3][0] == 11){
+        printf("La combinaison GRANDE SUITE est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 11 pour la choisir !\n");
+    }
+    else if(tab_combi[4][0] == 11){
+        printf("La combinaison GRANDE SUITE est disponible pour %d points\n", *somme_mid_spe);
+        printf("Tapez 11 pour la choisir !\n");
     }
 
     // Recherche de la présence de PETITE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (*somme_high_spe == 0 && ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_high_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 10 pour la choisir !\n");
             tab_combi[3][0] = 10;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_high_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 10 pour la choisir !\n");
             tab_combi[3][0] = 10;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -376,15 +411,11 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_mid_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 10 pour la choisir !\n");
             tab_combi[4][0] = 10;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_mid_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 10 pour la choisir !\n");
             tab_combi[4][0] = 10;
             tab_combi[4][1] = *somme_mid_spe;
 
@@ -393,26 +424,33 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_low_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 10 pour la choisir !\n");
             tab_combi[5][0] = 10;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_low_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 10 pour la choisir !\n");
             tab_combi[5][0] = 10;
             tab_combi[5][1] = *somme_low_spe;
         }
+    }
+
+    if(tab_combi[3][0] == 10){
+        printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 10 pour la choisir !\n");
+    }
+    else if(tab_combi[4][0] == 10){
+        printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_mid_spe);
+        printf("Tapez 10 pour la choisir !\n");
+    }
+    else if(tab_combi[5][0] == 10){
+        printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_low_spe);
+        printf("Tapez 10 pour la choisir !\n");
     }
 
     // Recherche de la présence de FULLHOUSE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (*somme_high_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_high_spe = 25;
-            printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 9 pour la choisir !\n");
             tab_combi[3][0] = 9;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -420,8 +458,6 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_mid_spe = 25;
-            printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 9 pour la choisir !\n");
             tab_combi[4][0] = 9;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -429,26 +465,33 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_low_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_low_spe = 25;
-            printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 9 pour la choisir !\n");
             tab_combi[5][0] = 9;
             tab_combi[5][1] = *somme_low_spe;
         }
+    }
+
+    if(tab_combi[3][0] == 9){
+        printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 9 pour la choisir !\n");
+    }
+    else if(tab_combi[4][0] == 9){
+        printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_mid_spe);
+        printf("Tapez 9 pour la choisir !\n");
+    }
+    else if(tab_combi[5][0] == 9){
+        printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_low_spe);
+        printf("Tapez 9 pour la choisir !\n");
     }
 
     // Recherche de la présence de CARRÉ dans la suite de dés selon si celui-ci a déjà été choisi par le joueur ou non
     if (*somme_high_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_high_spe = somme_high;
-            printf("La combinaison CARRE est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 8 pour la choisir !\n");
             tab_combi[3][0] = 8;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if (compt_mid == 4) {
             *somme_high_spe = somme_mid;
-            printf("La combinaison CARRE est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 8 pour la choisir !\n");
             tab_combi[3][0] = 8;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -456,15 +499,11 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_mid_spe = somme_high;
-            printf("La combinaison CARRE est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 8 pour la choisir !\n");
             tab_combi[4][0] = 8;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if (compt_mid == 4) {
             *somme_mid_spe = somme_mid;
-            printf("La combinaison CARRE est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 8 pour la choisir !\n");
             tab_combi[4][0] = 8;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -472,40 +511,44 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_low_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_low_spe = somme_high;
-            printf("La combinaison CARRE est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 8 pour la choisir !\n");
+
             tab_combi[5][0] = 8;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if (compt_mid == 4) {
             *somme_low_spe = somme_mid;
-            printf("La combinaison CARRE est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 8 pour la choisir !\n");
             tab_combi[5][0] = 8;
             tab_combi[5][1] = *somme_low_spe;
         }
+    }
+
+    if(tab_combi[3][0] == 8){
+        printf("La combinaison CARRE est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 8 pour la choisir !\n");
+    }
+    else if(tab_combi[4][0] == 8){
+        printf("La combinaison CARRE est disponible pour %d points\n", *somme_mid_spe);
+        printf("Tapez 8 pour la choisir !\n");
+    }
+    else if(tab_combi[5][0] == 8){
+        printf("La combinaison CARRE est disponible pour %d points\n", *somme_low_spe);
+        printf("Tapez 8 pour la choisir !\n");
     }
 
     // Recherche de la présence de BRELAN dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (*somme_high_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_high_spe = somme_high;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[3][0] = 7;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if (compt_mid == 3) {
             *somme_high_spe = somme_mid;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[3][0] = 7;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if (compt_low == 3) {
             *somme_high_spe = somme_low;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[3][0] = 7;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -513,22 +556,16 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_mid_spe = somme_high;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[4][0] = 7;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if (compt_mid == 3) {
             *somme_mid_spe = somme_mid;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[4][0] = 7;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if (compt_low == 3) {
             *somme_mid_spe = somme_low;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[4][0] = 7;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -536,25 +573,32 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_low_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_low_spe = somme_high;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[5][0] = 7;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if (compt_mid == 3) {
             *somme_low_spe = somme_mid;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[5][0] = 7;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if (compt_low == 3) {
             *somme_low_spe = somme_low;
-            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
-            printf("Tapez 7 pour la choisir !\n");
             tab_combi[5][0] = 7;
             tab_combi[5][1] = *somme_low_spe;
         }
+    }
+
+    if(tab_combi[3][0] == 7){
+        printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 7 pour la choisir !\n");
+    }
+    else if(tab_combi[4][0] == 7){
+        printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
+        printf("Tapez 7 pour la choisir !\n");
+    }
+    else if(tab_combi[5][0] == 7){
+        printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
+        printf("Tapez 7 pour la choisir !\n");
     }
 }
 
@@ -841,6 +885,7 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
     }
 }
 
+//Cetteprocédure mets à jour les booléens à la fin de chaque tour
 void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], char player2[20], bool *somme6, bool *somme5, bool *somme4, bool *somme3, bool *somme2, bool *somme1,
                 bool *brelan, bool *carre, bool *fullhouse, bool *ptsuite, bool *gdsuite, bool *yams, bool *chance){
     if(strcmp(curr_player, player1) == 0){
@@ -862,25 +907,25 @@ void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], ch
         if(strcmp(feuille_marq[7][1],"\t\t") != 0){
             somme6 = false;
         }
-        if(strcmp(feuille_marq[10][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[10][1],"\t") != 0){
             brelan = false;
         }
-        if(strcmp(feuille_marq[11][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[11][1],"\t") != 0){
             carre = false;
         }
-        if(strcmp(feuille_marq[12][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[12][1],"\t") != 0){
             fullhouse = false;
         }
-        if(strcmp(feuille_marq[13][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[13][1],"\t") != 0){
             ptsuite = false;
         }
-        if(strcmp(feuille_marq[14][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[14][1],"\t") != 0){
             gdsuite = false;
         }
-        if(strcmp(feuille_marq[15][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[15][1],"\t") != 0){
             yams = false;
         }
-        if(strcmp(feuille_marq[16][1],"\t\t") != 0){
+        if(strcmp(feuille_marq[16][1],"\t") != 0){
             chance = false;
         }
     }
@@ -903,26 +948,34 @@ void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], ch
         if(strcmp(feuille_marq[7][2],"\t\t") != 0){
             somme6 = false;
         }
-        if(strcmp(feuille_marq[10][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[10][2],"\t") != 0){
             brelan = false;
         }
-        if(strcmp(feuille_marq[11][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[11][2],"\t") != 0){
             carre = false;
         }
-        if(strcmp(feuille_marq[12][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[12][2],"\t") != 0){
             fullhouse = false;
         }
-        if(strcmp(feuille_marq[13][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[13][2],"\t") != 0){
             ptsuite = false;
         }
-        if(strcmp(feuille_marq[14][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[14][2],"\t") != 0){
             gdsuite = false;
         }
-        if(strcmp(feuille_marq[15][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[15][2],"\t") != 0){
             yams = false;
         }
-        if(strcmp(feuille_marq[16][2],"\t\t") != 0){
+        if(strcmp(feuille_marq[16][2],"\t") != 0){
             chance = false;
+        }
+    }
+}
+
+void reset_tab_combi(int tab_combi_int[6][2]){
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < 2; j++){
+            tab_combi_int[i][j] = 0;
         }
     }
 }
@@ -998,6 +1051,8 @@ int main() {
             aff_f_marq(feuille_marq);
             updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p1, &somme5_p1, &somme4_p1, &somme3_p1, &somme2_p1, &somme1_p1, 
                        &brelan_p1, &carre_p1, &fullhouse_p1, &ptsuite_p1, &gdsuite_p1, &yams_p1, &chance_p1);
+
+            reset_tab_combi(tab_combi_int);
         }
         else if(strcmp(curr_player, player2) == 0){
             bloq_de(des);
@@ -1015,6 +1070,8 @@ int main() {
             aff_f_marq(feuille_marq);
             updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p2, &somme5_p2, &somme4_p2, &somme3_p2, &somme2_p2, &somme1_p2, 
                        &brelan_p2, &carre_p2, &fullhouse_p2, &ptsuite_p2, &gdsuite_p2, &yams_p2, &chance_p2);
+
+            reset_tab_combi(tab_combi_int);
         }
     }
 }
