@@ -1,14 +1,25 @@
+/**
+ * @file Yams.c
+ * @author GUILLOU Florian
+ * @brief Projet Yams pour la SAE 1.01
+ * @version 1.0
+ * @date 28-11-2021
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>   
 #include <string.h>
 #include <time.h>
 #include <stdbool.h>
 
-#define LONGDE 5
-#define MAXX 3
-#define MAXY 20
-#define MAXMOT 22
-#define NBSUM 6
+#define LONGDE 5 /** @def Permet de définir le nombre de dés */
+#define MAXX 3 /** @def Permet de définir le maximum du tableau de la feuille de marque pour l'horizontale */
+#define MAXY 20 /** @def Permet de définir le maximum du tableau de la feuille de marque pour la verticale */
+#define MAXMOT 25 /** @def Permet de définir le maximum du tableau de la feuille de marque pour le nombre de caratères */
+#define NBSUM 6 /** @def Permet de définir la valeur maximale d'un dé */
 
 const int MAXDE = 6; // Utilisé dans la randomisation du chiffre des dés
 const int NBMAXP = 2; // Constante permettant de modifier le nombre de joueurs max
@@ -16,7 +27,7 @@ const int NBMAXP = 2; // Constante permettant de modifier le nombre de joueurs m
 typedef char t_fmarq[MAXY][MAXX][MAXMOT];
 typedef int t_de[LONGDE];
 
-// Cette procédure permet l'affichage de la feuille de marque.
+/** @brief Cette procédure permet l'affichage de la feuille de marque. */
 void aff_f_marq(t_fmarq feuille_marq) {
     for (int i = 0; i < MAXY; i++) {
         for (int j = 0; j < MAXX; j++) {
@@ -27,7 +38,7 @@ void aff_f_marq(t_fmarq feuille_marq) {
     printf("\n");
 }
 
-// Cette procédure demande au joueur un par un quel est leur nom.
+/** @brief Cette procédure demande au joueur un par un quel est leur nom. */
 void player(char player1[20], char player2[20]) {
     for (int indice = 0; indice < NBMAXP; indice++) {
         printf("Entrez le nom du joueur %d : ", indice + 1);
@@ -40,7 +51,7 @@ void player(char player1[20], char player2[20]) {
     }
 }
 
-// Cette procédure permet de déterminer quel est le joueur qui doit jouer
+/** @brief Cette procédure permet de déterminer quel est le joueur qui doit jouer en fonction du tour en cours */
 void current_player(char player1[20], char player2[20], char curr_player[20], int tour) {
     if ((tour % 2) == 0) {
         strcpy(curr_player, player1);
@@ -51,7 +62,7 @@ void current_player(char player1[20], char player2[20], char curr_player[20], in
     printf("%s\n", curr_player);
 }
 
-// Cette procédure permet l'affichage des dés.
+/** @brief Cette procédure permet l'affichage des dés */
 void aff_des(t_de des) {
     printf("| ");
     for (int i = 0; i < LONGDE; i++) {
@@ -61,9 +72,11 @@ void aff_des(t_de des) {
     printf("\n");
 }
 
-// Permet de trier les dés pour la procédure des combinaisons spéciales
+/**
+ * @brief Permet de trier les dés pour la procédure des combinaisons spéciales
+ */
 void trie(t_de des) {
-    int tmp;
+    int tmp; /** @var variable temporaire pour le tri bulle **/ 
     for(int indice_i = 0; indice_i < LONGDE; indice_i ++) {
         for(int indice_j = 0; indice_j < LONGDE; indice_j ++) {
             if( des[indice_j] > des[indice_j + 1]) {
@@ -75,7 +88,7 @@ void trie(t_de des) {
     }
 }
 
-// Cette procédure permet de lancer aléatoirement les dés puis de les afficher. Elle est utilsée en début de tour.
+/** @brief Cette procédure permet de lancer aléatoirement les dés puis de les afficher. Elle est utilsée en début de tour */
 int lancer_de(t_de des) {
     srand(time(NULL));
     for (int i = 0; i < LONGDE; i++) {
@@ -84,8 +97,11 @@ int lancer_de(t_de des) {
     aff_des(des);
 }
 
-/* Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés.Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
-Si la réponse du joueur au moment de la demande de relance n'est pas admise, le programme reposera la question. */
+
+/**
+ * @brief Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés.Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
+ * @brief Si la réponse du joueur au moment de la demande de relance n'est pas admise, le programme reposera la question
+ */
 int bloq_de(t_de des) {
     int nb_de, de, try;
     char answer[4];
@@ -120,19 +136,21 @@ int bloq_de(t_de des) {
     }
 }
 
-// Cette procédure permet de remettre les dés à zéro et sera exploitée à la fin de chaque tour pour assurer l'aléatoire
+/**
+ * @brief Cette procédure permet de remettre les dés à zéro et sera exploitée à la fin de chaque tour pour assurer l'aléatoire
+ */
 void reset(t_de des) {
     for (int indice = 0; indice < LONGDE; indice++)
         des[indice] = 0;
 }
 
-
+/** @brief Cette procédure détermine les combinaisons de sommes possibles */
 void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt_high, int* compt_mid, int* compt_low, bool somme6, bool somme5, bool somme4, 
                  bool somme3, bool somme2, bool somme1, int tab_combi[6][2]) {
     *somme_low = 0; *somme_mid = 0; *somme_high = 0;
     *compt_low = 0; *compt_mid = 0; *compt_high = 0;
 
-    // Recherche de 6 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
+    /** @brief Recherche de 6 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur */
     for (int indice6 = 0; indice6 < LONGDE ^ somme6 == false; indice6++) {
         if (des[indice6] == 6) {
             *compt_high = *compt_high + 1;
@@ -146,7 +164,7 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         printf("Tapez 6 pour la choisir !\n");
     }
 
-    // Recherche de 5 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
+    /** @brief Recherche de 5 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur */
     if (*compt_high == 0) {
         for (int indice5 = 0; indice5 < LONGDE ^ somme5 == false; indice5++) {
             if (des[indice5] == 5) {
@@ -176,7 +194,7 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         printf("Tapez 5 pour la choisir !\n");
     }
 
-    // Recherche de 4 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
+    /** @brief Recherche de 4 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur */
     if (*compt_high == 0) {
         for (int indice4 = 0; indice4 < LONGDE ^ somme4 == false; indice4++) {
             if (des[indice4] == 4) {
@@ -221,7 +239,7 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
     }
 
 
-    // Recherche de 3 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
+    /** @brief Recherche de 3 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur */
     if (*compt_high == 0) {
         for (int indice3 = 0; indice3 < LONGDE ^ somme3 == false; indice3++) {
             if (des[indice3] == 3) {
@@ -265,7 +283,7 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         printf("Tapez 3 pour la choisir !\n");
     }
 
-    // Recherche de 2 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
+    /** @brief Recherche de 2 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur */
     if (*compt_high == 0) {
         for (int indice2 = 0; indice2 < LONGDE ^ somme2 == false; indice2++) {
             if (des[indice2] == 2) {
@@ -309,7 +327,7 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         printf("Tapez 2 pour la choisir !\n");
     }
 
-    // Recherche de 1 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur
+    /** @brief Recherche de 1 dans le lancer de dés puis calcul si présence et qu'il n'a pas déjà été exploité par le joueur */
     if (*compt_high == 0) {
         for (int indice1 = 0; indice1 < LONGDE ^ somme1 == false; indice1++) {
             if (des[indice1] == 1) {
@@ -354,12 +372,13 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
     }
 }
 
+/** @brief Cette procédure détermine les combinaisons spéciales ( brelan, carre, etc...) possibles */
 void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, 
-                    int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance, int tab_combi[6][2]) {
-    *somme_low_spe = 0; *somme_mid_spe = 0; *somme_high_spe = 0;
+                    int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance, int tab_combi[6][2], int *somme_chance) {
+    *somme_low_spe = 0; *somme_mid_spe = 0; *somme_high_spe = 0; *somme_chance = 0;
     trie(des);
 
-    // Recherche de la présence de YAMS dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    /** @brief Recherche de la présence de YAMS dans la suite de dés selon si il a déjà été choisi ou non par le joueur */
     if (compt_high == 5 && yams == true) {
         *somme_high_spe = 50;
         tab_combi[3][0] = 12;
@@ -370,7 +389,7 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
         printf("Tapez 12 pour la choisir !\n");
     }
 
-    // Recherche de la présence de GRANDE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    /** @brief Recherche de la présence de GRANDE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur */
     if (*somme_high_spe == 0 && gdsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_high_spe = 40;
@@ -395,7 +414,7 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
         printf("Tapez 11 pour la choisir !\n");
     }
 
-    // Recherche de la présence de PETITE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    /** @brief Recherche de la présence de PETITE SUITE dans la suite de dés selon si il a déjà été choisi ou non par le joueur */
     if (*somme_high_spe == 0 && ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_high_spe = 30;
@@ -447,7 +466,7 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
         printf("Tapez 10 pour la choisir !\n");
     }
 
-    // Recherche de la présence de FULLHOUSE dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    /** @brief Recherche de la présence de FULLHOUSE dans la suite de dés selon si il a déjà été choisi ou non par le joueur */
     if (*somme_high_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_high_spe = 25;
@@ -483,7 +502,7 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
         printf("Tapez 9 pour la choisir !\n");
     }
 
-    // Recherche de la présence de CARRÉ dans la suite de dés selon si celui-ci a déjà été choisi par le joueur ou non
+    /** @brief Recherche de la présence de CARRÉ dans la suite de dés selon si celui-ci a déjà été choisi par le joueur ou non */
     if (*somme_high_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_high_spe = somme_high;
@@ -535,7 +554,7 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
         printf("Tapez 8 pour la choisir !\n");
     }
 
-    // Recherche de la présence de BRELAN dans la suite de dés selon si il a déjà été choisi ou non par le joueur
+    /** @brief Recherche de la présence de BRELAN dans la suite de dés selon si il a déjà été choisi ou non par le joueur */
     if (*somme_high_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_high_spe = somme_high;
@@ -600,23 +619,37 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
         printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
         printf("Tapez 7 pour la choisir !\n");
     }
+
+    /** @brief Calcule la somme des dés pour la combinaison CHANCE seulement si CHANCE n'a pas été choisi par le joueur auparavant */
+    if(chance == true){
+        for(int i = 0; i < LONGDE; i++){
+            *somme_chance = *somme_chance + des[i];
+        }
+        printf("La combinaison CHANCE est disponible pour %d points\n", *somme_chance);
+        printf("Tapez 13 pour la choisir !\n");
+    }
 }
 
-//Cette procédure demande au joueur quelle combinaison il veut jouer
+/** @brief Cette procédure demande au joueur quelle combinaison il veut jouer */
 void combinaison_tour(int *choice) {
     printf("Quelle combinaison souhaitez vous donc choisir : ");
     scanf("%d", &*choice);
 }
 
-void int_to_str(int tab_combi_int[6][2], char tab_combi_str[6][2][5], int indice_y, int indice_x){
+/** @brief Cette procédure permet de faire passer les int en string afin de les ajouter à la feuille de marque */
+void int_to_str(int tab_combi_int[6][2], char tab_combi_str[6][2][10], int indice_y, int indice_x){
     sprintf(tab_combi_str[indice_y][indice_x], "%d", tab_combi_int[indice_y][indice_x]);
 }
 
-//Cette procédure mets à jour la feuille de marque après le choix du joueur
-void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int tab_combi_int[6][2], int *choice,
-                         char curr_player[20], char player1[20], char player2[20]){
+/** @brief Cette procédure mets à jour la feuille de marque après le choix du joueur */
+void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][10], int tab_combi_int[6][2], int *choice,
+                         char curr_player[20], char player1[20], char player2[20], int somme_chance, char somme_chance_string[10]){
     if(strcmp(curr_player, player1) == 0) {
         switch(*choice){
+            case 13:
+                sprintf(somme_chance_string, "%d", somme_chance);
+                strcpy(feuille_marq[2][16],somme_chance_string);
+                break;
             case 12:
                 strcpy(feuille_marq[2][15],tab_combi_str[3][1]);
                 break;
@@ -751,6 +784,10 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
     }
     else if(strcmp(curr_player, player2) == 0) {
         switch(*choice){
+            case 13:
+                sprintf(somme_chance_string, "%d", somme_chance);
+                strcpy(feuille_marq[2][16],somme_chance_string);
+                break;
             case 12:
                 strcpy(feuille_marq[2][15],tab_combi_str[3][1]);
                 break;
@@ -885,7 +922,7 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
     }
 }
 
-//Cetteprocédure mets à jour les booléens à la fin de chaque tour
+/** @brief Cette procédure mets à jour les booléens à la fin de chaque tour */
 void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], char player2[20], bool *somme6, bool *somme5, bool *somme4, bool *somme3, bool *somme2, bool *somme1,
                 bool *brelan, bool *carre, bool *fullhouse, bool *ptsuite, bool *gdsuite, bool *yams, bool *chance){
     if(strcmp(curr_player, player1) == 0){
@@ -972,6 +1009,7 @@ void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], ch
     }
 }
 
+/** @brief Cette procédure réinitialise le tableau contenant les combinaisons du tour */
 void reset_tab_combi(int tab_combi_int[6][2]){
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < 2; j++){
@@ -1011,7 +1049,7 @@ int main() {
     int somme_high, somme_mid, somme_low;
     int compt_high, compt_mid, compt_low;
 
-    int somme_high_spe, somme_mid_spe, somme_low_spe;
+    int somme_high_spe, somme_mid_spe, somme_low_spe, somme_chance;
 
     int p_choice;
 
@@ -1028,11 +1066,12 @@ int main() {
     brelan_p2 = true; carre_p2 = true; fullhouse_p2 = true; ptsuite_p2 = true; gdsuite_p2 = true; yams_p2 = true; chance_p2 = true;
 
     int tab_combi_int[6][2];
-    char tab_combi_str[6][2][5];
+    char tab_combi_str[6][2][10], somme_chance_string[10];
 
     player(player1, player2);
     aff_f_marq(feuille_marq);
 
+    /** @brief Cette boucle permet de mettre en route le jeu, et de créer les tours **/
     for(int i = 0; i < 26; i++){
         current_player(player1, player2, curr_player, i);
         if(strcmp(curr_player, player1) == 0){
@@ -1041,18 +1080,19 @@ int main() {
             combinaison(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, somme6_p1, somme5_p1, somme4_p1, somme3_p1, somme2_p1, somme1_p1, 
                         tab_combi_int);
             combinaison_spe(des, &somme_high_spe, &somme_mid_spe, &somme_low_spe, somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low, brelan_p1, carre_p1, 
-                            fullhouse_p1, ptsuite_p1, gdsuite_p1, yams_p1, chance_p1, tab_combi_int);
+                            fullhouse_p1, ptsuite_p1, gdsuite_p1, yams_p1, chance_p1, tab_combi_int, &somme_chance);
             combinaison_tour(&p_choice);
 
             int_to_str(tab_combi_int, tab_combi_str, p_choice, 1);
 
-            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, &p_choice, curr_player, player1, player2);
+            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, &p_choice, curr_player, player1, player2, somme_chance, somme_chance_string);
 
             aff_f_marq(feuille_marq);
             updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p1, &somme5_p1, &somme4_p1, &somme3_p1, &somme2_p1, &somme1_p1, 
                        &brelan_p1, &carre_p1, &fullhouse_p1, &ptsuite_p1, &gdsuite_p1, &yams_p1, &chance_p1);
 
             reset_tab_combi(tab_combi_int);
+            reset(des);
         }
         else if(strcmp(curr_player, player2) == 0){
             bloq_de(des);
@@ -1060,18 +1100,19 @@ int main() {
             combinaison(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, somme6_p2, somme5_p2, somme4_p2, somme3_p2, somme2_p2, somme1_p2, 
                         tab_combi_int);
             combinaison_spe(des, &somme_high_spe, &somme_mid_spe, &somme_low_spe, somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low, brelan_p2, carre_p2, 
-                            fullhouse_p2, ptsuite_p2, gdsuite_p2, yams_p2, chance_p2, tab_combi_int);
+                            fullhouse_p2, ptsuite_p2, gdsuite_p2, yams_p2, chance_p2, tab_combi_int, &somme_chance);
             combinaison_tour(&p_choice);
 
             int_to_str(tab_combi_int, tab_combi_str, p_choice, 1);
 
-            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, &p_choice, curr_player, player1, player2);
+            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, &p_choice, curr_player, player1, player2, somme_chance, somme_chance_string);
 
             aff_f_marq(feuille_marq);
             updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p2, &somme5_p2, &somme4_p2, &somme3_p2, &somme2_p2, &somme1_p2, 
                        &brelan_p2, &carre_p2, &fullhouse_p2, &ptsuite_p2, &gdsuite_p2, &yams_p2, &chance_p2);
 
             reset_tab_combi(tab_combi_int);
+            reset(des);
         }
     }
 }
