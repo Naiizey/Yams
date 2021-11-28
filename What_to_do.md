@@ -1,12 +1,10 @@
 # Missing parts : 
 
-- Updtade Feuille Marque --> Update la feuille de marque avec la combinaison choisie par le joueur & met à jour le booléen
+- NONE
 
 ## Choses à modifier :
 
-- Faire un main propre qui permet le jeu
-
-- Éventuellement modifier l'apparence des dés
+- Update feuille marq works badly :sadge:
 
 ## Effectuer la phase de tests et les reporter 
 
