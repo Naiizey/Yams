@@ -128,7 +128,7 @@ void reset(t_de des) {
 
 
 void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt_high, int* compt_mid, int* compt_low, bool somme6, bool somme5, bool somme4, 
-                 bool somme3, bool somme2, bool somme1, int tab_combi[6][3]) {
+                 bool somme3, bool somme2, bool somme1, int tab_combi[6][2]) {
     *somme_low = 0; *somme_mid = 0; *somme_high = 0;
     *compt_low = 0; *compt_mid = 0; *compt_high = 0;
 
@@ -986,14 +986,14 @@ int main() {
             bloq_de(des);
 
             combinaison(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, somme6_p1, somme5_p1, somme4_p1, somme3_p1, somme2_p1, somme1_p1, 
-                        tab_combi_int[6][2]);
+                        tab_combi_int);
             combinaison_spe(des, &somme_high_spe, &somme_mid_spe, &somme_low_spe, somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low, brelan_p1, carre_p1, 
-                            fullhouse_p1, ptsuite_p1, gdsuite_p1, yams_p1, chance_p1, tab_combi_int[6][2]);
+                            fullhouse_p1, ptsuite_p1, gdsuite_p1, yams_p1, chance_p1, tab_combi_int);
             combinaison_tour(&p_choice);
 
             int_to_str(tab_combi_int, tab_combi_str, p_choice, 1);
 
-            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, p_choice, curr_player, player1, player2);
+            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, &p_choice, curr_player, player1, player2);
 
             aff_f_marq(feuille_marq);
             updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p1, &somme5_p1, &somme4_p1, &somme3_p1, &somme2_p1, &somme1_p1, 
@@ -1003,14 +1003,14 @@ int main() {
             bloq_de(des);
 
             combinaison(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, somme6_p2, somme5_p2, somme4_p2, somme3_p2, somme2_p2, somme1_p2, 
-                        tab_combi_int[6][2]);
+                        tab_combi_int);
             combinaison_spe(des, &somme_high_spe, &somme_mid_spe, &somme_low_spe, somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low, brelan_p2, carre_p2, 
-                            fullhouse_p2, ptsuite_p2, gdsuite_p2, yams_p2, chance_p2, tab_combi_int[6][2]);
+                            fullhouse_p2, ptsuite_p2, gdsuite_p2, yams_p2, chance_p2, tab_combi_int);
             combinaison_tour(&p_choice);
 
             int_to_str(tab_combi_int, tab_combi_str, p_choice, 1);
 
-            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, p_choice, curr_player, player1, player2);
+            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, &p_choice, curr_player, player1, player2);
 
             aff_f_marq(feuille_marq);
             updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p2, &somme5_p2, &somme4_p2, &somme3_p2, &somme2_p2, &somme1_p2, 
