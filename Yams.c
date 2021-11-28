@@ -2,7 +2,7 @@
  * @file Yams.c
  * @author GUILLOU Florian
  * @brief Projet Yams pour la SAE 1.01
- * @version 1.0
+ * @version 0.9
  * @date 28-11-2021
  * 
  * @copyright Copyright (c) 2021
@@ -24,10 +24,10 @@
 const int MAXDE = 6; // Utilisé dans la randomisation du chiffre des dés
 const int NBMAXP = 2; // Constante permettant de modifier le nombre de joueurs max
 
-typedef char t_fmarq[MAXY][MAXX][MAXMOT];
-typedef int t_de[LONGDE];
+typedef char t_fmarq[MAXY][MAXX][MAXMOT]; /** @typedef type permettant de définir la feuille de marque */
+typedef int t_de[LONGDE]; /** @typedef  type permettant de définir les dés */
 
-/** @brief Cette procédure permet l'affichage de la feuille de marque. */
+/** @fn Cette procédure permet l'affichage de la feuille de marque. */
 void aff_f_marq(t_fmarq feuille_marq) {
     for (int i = 0; i < MAXY; i++) {
         for (int j = 0; j < MAXX; j++) {
@@ -38,7 +38,7 @@ void aff_f_marq(t_fmarq feuille_marq) {
     printf("\n");
 }
 
-/** @brief Cette procédure demande au joueur un par un quel est leur nom. */
+/** @fn Cette procédure demande au joueur un par un quel est leur nom. */
 void player(char player1[20], char player2[20]) {
     for (int indice = 0; indice < NBMAXP; indice++) {
         printf("Entrez le nom du joueur %d : ", indice + 1);
@@ -51,7 +51,7 @@ void player(char player1[20], char player2[20]) {
     }
 }
 
-/** @brief Cette procédure permet de déterminer quel est le joueur qui doit jouer en fonction du tour en cours */
+/** @fn Cette procédure permet de déterminer quel est le joueur qui doit jouer en fonction du tour en cours */
 void current_player(char player1[20], char player2[20], char curr_player[20], int tour) {
     if ((tour % 2) == 0) {
         strcpy(curr_player, player1);
@@ -62,7 +62,7 @@ void current_player(char player1[20], char player2[20], char curr_player[20], in
     printf("%s\n", curr_player);
 }
 
-/** @brief Cette procédure permet l'affichage des dés */
+/** @fn Cette procédure permet l'affichage des dés */
 void aff_des(t_de des) {
     printf("| ");
     for (int i = 0; i < LONGDE; i++) {
@@ -72,9 +72,7 @@ void aff_des(t_de des) {
     printf("\n");
 }
 
-/**
- * @brief Permet de trier les dés pour la procédure des combinaisons spéciales
- */
+/** @fn Permet de trier les dés pour la procédure des combinaisons spéciales */
 void trie(t_de des) {
     int tmp; /** @var variable temporaire pour le tri bulle **/ 
     for(int indice_i = 0; indice_i < LONGDE; indice_i ++) {
@@ -88,7 +86,7 @@ void trie(t_de des) {
     }
 }
 
-/** @brief Cette procédure permet de lancer aléatoirement les dés puis de les afficher. Elle est utilsée en début de tour */
+/** @fn Cette procédure permet de lancer aléatoirement les dés puis de les afficher. Elle est utilsée en début de tour */
 int lancer_de(t_de des) {
     srand(time(NULL));
     for (int i = 0; i < LONGDE; i++) {
@@ -99,8 +97,8 @@ int lancer_de(t_de des) {
 
 
 /**
- * @brief Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés.Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
- * @brief Si la réponse du joueur au moment de la demande de relance n'est pas admise, le programme reposera la question
+ * @fn Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés. Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
+Si la réponse du joueur au moment de la demande de relance n'est pas admise, le programme reposera la question
  */
 int bloq_de(t_de des) {
     int nb_de, de, try;
@@ -136,15 +134,13 @@ int bloq_de(t_de des) {
     }
 }
 
-/**
- * @brief Cette procédure permet de remettre les dés à zéro et sera exploitée à la fin de chaque tour pour assurer l'aléatoire
- */
+/** @fn Cette procédure permet de remettre les dés à zéro et sera exploitée à la fin de chaque tour pour assurer l'aléatoire */
 void reset(t_de des) {
     for (int indice = 0; indice < LONGDE; indice++)
         des[indice] = 0;
 }
 
-/** @brief Cette procédure détermine les combinaisons de sommes possibles */
+/** @fn Cette procédure détermine les combinaisons de sommes possibles */
 void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int* compt_high, int* compt_mid, int* compt_low, bool somme6, bool somme5, bool somme4, 
                  bool somme3, bool somme2, bool somme1, int tab_combi[6][2]) {
     *somme_low = 0; *somme_mid = 0; *somme_high = 0;
@@ -372,7 +368,7 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
     }
 }
 
-/** @brief Cette procédure détermine les combinaisons spéciales ( brelan, carre, etc...) possibles */
+/** @fn Cette procédure détermine les combinaisons spéciales ( brelan, carre, etc...) possibles */
 void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, 
                     int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance, int tab_combi[6][2], int *somme_chance) {
     *somme_low_spe = 0; *somme_mid_spe = 0; *somme_high_spe = 0; *somme_chance = 0;
@@ -630,18 +626,18 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     }
 }
 
-/** @brief Cette procédure demande au joueur quelle combinaison il veut jouer */
+/** @fn Cette procédure demande au joueur quelle combinaison il veut jouer */
 void combinaison_tour(int *choice) {
     printf("Quelle combinaison souhaitez vous donc choisir : ");
     scanf("%d", &*choice);
 }
 
-/** @brief Cette procédure permet de faire passer les int en string afin de les ajouter à la feuille de marque */
+/** @fn Cette procédure permet de faire passer les int en string afin de les ajouter à la feuille de marque */
 void int_to_str(int tab_combi_int[6][2], char tab_combi_str[6][2][10], int indice_y, int indice_x){
     sprintf(tab_combi_str[indice_y][indice_x], "%d", tab_combi_int[indice_y][indice_x]);
 }
 
-/** @brief Cette procédure mets à jour la feuille de marque après le choix du joueur */
+/** @fn Cette procédure mets à jour la feuille de marque après le choix du joueur */
 void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][10], int tab_combi_int[6][2], int *choice,
                          char curr_player[20], char player1[20], char player2[20], int somme_chance, char somme_chance_string[10]){
     if(strcmp(curr_player, player1) == 0) {
@@ -922,7 +918,7 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][10], int
     }
 }
 
-/** @brief Cette procédure mets à jour les booléens à la fin de chaque tour */
+/** @fn Cette procédure mets à jour les booléens à la fin de chaque tour */
 void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], char player2[20], bool *somme6, bool *somme5, bool *somme4, bool *somme3, bool *somme2, bool *somme1,
                 bool *brelan, bool *carre, bool *fullhouse, bool *ptsuite, bool *gdsuite, bool *yams, bool *chance){
     if(strcmp(curr_player, player1) == 0){
@@ -1009,7 +1005,7 @@ void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], ch
     }
 }
 
-/** @brief Cette procédure réinitialise le tableau contenant les combinaisons du tour */
+/** @fn Cette procédure réinitialise le tableau contenant les combinaisons du tour */
 void reset_tab_combi(int tab_combi_int[6][2]){
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < 2; j++){
@@ -1071,7 +1067,7 @@ int main() {
     player(player1, player2);
     aff_f_marq(feuille_marq);
 
-    /** @brief Cette boucle permet de mettre en route le jeu, et de créer les tours **/
+    /** @brief Cette boucle permet de mettre en route le jeu, et de créer les tours */
     for(int i = 0; i < 26; i++){
         current_player(player1, player2, curr_player, i);
         if(strcmp(curr_player, player1) == 0){
