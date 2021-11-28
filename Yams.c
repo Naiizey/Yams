@@ -6,7 +6,7 @@
 
 #define LONGDE 5
 #define MAXX 3
-#define MAXY 18
+#define MAXY 20
 #define MAXMOT 22
 #define NBSUM 6
 
@@ -48,6 +48,7 @@ void current_player(char player1[20], char player2[20], char curr_player[20], in
     else {
         strcpy(curr_player, player2);
     }
+    printf("%s\n", curr_player);
 }
 
 // Cette procédure permet l'affichage des dés.
@@ -80,7 +81,7 @@ int lancer_de(t_de des) {
     for (int i = 0; i < LONGDE; i++) {
         des[i] = 1 + rand() % MAXDE;
     }
-    aff_des(des)
+    aff_des(des);
 }
 
 /* Cette procédure demande dans un premier temps si le joueur souhaite ou non relancer des dés.Puis selon sa réponse lui demande ou non combien de dés et enfin quels dés(de 1 à 5)
@@ -112,11 +113,11 @@ int bloq_de(t_de des) {
                 des[de - 1] = 1 + rand() % MAXDE;
                 printf("Voici la nouvelle valeur du dé %d : %d\n", de, des[de - 1]);
             }
+            printf("\n");
             printf("Vos dés sont donc : ");
             aff_des(des);
         }
     }
-    aff_des(des);
 }
 
 // Cette procédure permet de remettre les dés à zéro et sera exploitée à la fin de chaque tour pour assurer l'aléatoire
@@ -136,8 +137,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
         if (des[indice6] == 6) {
             *compt_high = *compt_high + 1;
             *somme_high = *somme_high + des[indice6];
-            printf("La combinaison SOMME DE 6 est disponible pour %d points", *somme_high);
-            printf("Tapez 6 pour la choisir !");
+            printf("La combinaison SOMME DE 6 est disponible pour %d points\n", *somme_high);
+            printf("Tapez 6 pour la choisir !\n");
             tab_combi[0][0] = 6;
             tab_combi[0][1] = *somme_high;
         }
@@ -149,8 +150,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice5] == 5) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice5];
-                printf("La combinaison SOMME DE 5 est disponible pour %d points", *somme_high);
-                printf("Tapez 5 pour la choisir !");
+                printf("La combinaison SOMME DE 5 est disponible pour %d points\n", *somme_high);
+                printf("Tapez 5 pour la choisir !\n");
                 tab_combi[0][0] = 5;
                 tab_combi[0][1] = *somme_high;
             }
@@ -161,8 +162,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice5] == 5) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice5];
-                printf("La combinaison SOMME DE 5 est disponible pour %d points", *somme_mid);
-                printf("Tapez 5 pour la choisir !");
+                printf("La combinaison SOMME DE 5 est disponible pour %d points\n", *somme_mid);
+                printf("Tapez 5 pour la choisir !\n");
                 tab_combi[1][0] = 5;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -175,8 +176,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice4];
-                printf("La combinaison SOMME DE 4 est disponible pour %d points", *somme_high);
-                printf("Tapez 4 pour la choisir !");
+                printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_high);
+                printf("Tapez 4 pour la choisir !\n");
                 tab_combi[0][0] = 4;
                 tab_combi[0][1] = *somme_high;
             }
@@ -187,8 +188,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice4];
-                printf("La combinaison SOMME DE 4 est disponible pour %d points", *somme_mid);
-                printf("Tapez 4 pour la choisir !");
+                printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_mid);
+                printf("Tapez 4 pour la choisir !\n");
                 tab_combi[1][0] = 4;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -199,8 +200,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice4] == 4) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice4];
-                printf("La combinaison SOMME DE 4 est disponible pour %d points", *somme_low);
-                printf("Tapez 4 pour la choisir !");
+                printf("La combinaison SOMME DE 4 est disponible pour %d points\n", *somme_low);
+                printf("Tapez 4 pour la choisir !\n");
                 tab_combi[2][0] = 4;
                 tab_combi[2][1] = *somme_low;
             }
@@ -213,8 +214,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice3];
-                printf("La combinaison SOMME DE 3 est disponible pour %d points", *somme_high);
-                printf("Tapez 3 pour la choisir !");
+                printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_high);
+                printf("Tapez 3 pour la choisir !\n");
                 tab_combi[0][0] = 3;
                 tab_combi[0][1] = *somme_high;
             }
@@ -225,8 +226,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice3];
-                printf("La combinaison SOMME DE 3 est disponible pour %d points", *somme_mid);
-                printf("Tapez 3 pour la choisir !");
+                printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_mid);
+                printf("Tapez 3 pour la choisir !\n");
                 tab_combi[1][0] = 3;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -237,8 +238,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice3] == 3) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice3];
-                printf("La combinaison SOMME DE 3 est disponible pour %d points", *somme_low);
-                printf("Tapez 3 pour la choisir !");
+                printf("La combinaison SOMME DE 3 est disponible pour %d points\n", *somme_low);
+                printf("Tapez 3 pour la choisir !\n");
                 tab_combi[2][0] = 3;
                 tab_combi[2][1] = *somme_low;
             }
@@ -251,8 +252,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice2];
-                printf("La combinaison SOMME DE 2 est disponible pour %d points", *somme_high);
-                printf("Tapez 2 pour la choisir !");
+                printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_high);
+                printf("Tapez 2 pour la choisir !\n");
                 tab_combi[0][0] = 2;
                 tab_combi[0][1] = *somme_high;
             }
@@ -263,8 +264,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice2];
-                printf("La combinaison SOMME DE 2 est disponible pour %d points", *somme_mid);
-                printf("Tapez 2 pour la choisir !");
+                printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_mid);
+                printf("Tapez 2 pour la choisir !\n");
                 tab_combi[1][0] = 2;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -275,8 +276,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice2] == 2) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice2];
-                printf("La combinaison SOMME DE 2 est disponible pour %d points", *somme_low);
-                printf("Tapez 2 pour la choisir !");
+                printf("La combinaison SOMME DE 2 est disponible pour %d points\n", *somme_low);
+                printf("Tapez 2 pour la choisir !\n");
                 tab_combi[2][0] = 2;
                 tab_combi[2][1] = *somme_low;
             }
@@ -289,8 +290,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_high = *compt_high + 1;
                 *somme_high = *somme_high + des[indice1];
-                printf("La combinaison SOMME DE 1 est disponible pour %d points", *somme_high);
-                printf("Tapez 1 pour la choisir !");
+                printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_high);
+                printf("Tapez 1 pour la choisir !\n");
                 tab_combi[0][0] = 1;
                 tab_combi[0][1] = *somme_high;
             }
@@ -301,8 +302,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_mid = *compt_mid + 1;
                 *somme_mid = *somme_mid + des[indice1];
-                printf("La combinaison SOMME DE 1 est disponible pour %d points", *somme_mid);
-                printf("Tapez 1 pour la choisir !");
+                printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_mid);
+                printf("Tapez 1 pour la choisir !\n");
                 tab_combi[1][0] = 1;
                 tab_combi[1][1] = *somme_mid;
             }
@@ -313,8 +314,8 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
             if (des[indice1] == 1) {
                 *compt_low = *compt_low + 1;
                 *somme_low = *somme_low + des[indice1];
-                printf("La combinaison SOMME DE 1 est disponible pour %d points", *somme_mid);
-                printf("Tapez 1 pour la choisir !");
+                printf("La combinaison SOMME DE 1 est disponible pour %d points\n", *somme_mid);
+                printf("Tapez 1 pour la choisir !\n");
                 tab_combi[2][0] = 1;
                 tab_combi[2][1] = *somme_low;
             }
@@ -322,14 +323,15 @@ void combinaison(t_de des, int* somme_high, int* somme_mid, int* somme_low, int*
     }
 }
 
-void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance) {
+void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *somme_low_spe, int somme_high, int somme_mid, int somme_low, int compt_high, int compt_mid, 
+                    int compt_low, bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance, int tab_combi[6][2]) {
     trie(des);
 
     // Recherche de la présence de YAMS dans la suite de dés selon si il a déjà été choisi ou non par le joueur
     if (compt_high == 5 && yams == true) {
         *somme_high_spe = 50;
-        printf("La combinaison YAMS est disponible pour %d points", *somme_high_spe);
-        printf("Tapez 12 pour la choisir !");
+        printf("La combinaison YAMS est disponible pour %d points\n", *somme_high_spe);
+        printf("Tapez 12 pour la choisir !\n");
         tab_combi[3][0] = 12;
         tab_combi[3][1] = *somme_high_spe;
     }
@@ -338,8 +340,8 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     if (*somme_high_spe == 0 && gdsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_high_spe = 40;
-            printf("La combinaison GRANDE SUITE est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 11 pour la choisir !");
+            printf("La combinaison GRANDE SUITE est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 11 pour la choisir !\n");
             tab_combi[3][0] = 11;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -347,8 +349,8 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if(gdsuite == true){
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_mid_spe =  40;
-            printf("La combinaison GRANDE SUITE est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 11 pour la choisir !");
+            printf("La combinaison GRANDE SUITE est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 11 pour la choisir !\n");
             tab_combi[4][0] = 11;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -358,15 +360,15 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     if (*somme_high_spe == 0 && ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_high_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 10 pour la choisir !");
+            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 10 pour la choisir !\n");
             tab_combi[3][0] = 10;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_high_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 10 pour la choisir !");
+            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 10 pour la choisir !\n");
             tab_combi[3][0] = 10;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -374,15 +376,15 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_mid_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 10 pour la choisir !");
+            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 10 pour la choisir !\n");
             tab_combi[4][0] = 10;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_mid_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 10 pour la choisir !");
+            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 10 pour la choisir !\n");
             tab_combi[4][0] = 10;
             tab_combi[4][1] = *somme_mid_spe;
 
@@ -391,15 +393,15 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (ptsuite == true) {
         if ((des[0] == 1 && des[1] == 2 && des[2] == 3 && des[3] == 4) ^ (des[0] == 2 && des[1] == 3 && des[2] == 4 && des[3] == 5) ^ (des[0] == 3 && des[1] == 4 && des[2] == 5 && des[3] == 6)) {
             *somme_low_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 10 pour la choisir !");
+            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 10 pour la choisir !\n");
             tab_combi[5][0] = 10;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if ((des[1] == 1 && des[2] == 2 && des[3] == 3 && des[4] == 4) ^ (des[1] == 2 && des[2] == 3 && des[3] == 4 && des[4] == 5) ^ (des[1] == 3 && des[2] == 4 && des[3] == 5 && des[4] == 6)) {
             *somme_low_spe = 30;
-            printf("La combinaison PETITE SUITE est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 10 pour la choisir !");
+            printf("La combinaison PETITE SUITE est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 10 pour la choisir !\n");
             tab_combi[5][0] = 10;
             tab_combi[5][1] = *somme_low_spe;
         }
@@ -409,8 +411,8 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     if (*somme_high_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_high_spe = 25;
-            printf("La combinaison FULLHOUSE est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 9 pour la choisir !");
+            printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 9 pour la choisir !\n");
             tab_combi[3][0] = 9;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -418,8 +420,8 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_mid_spe = 25;
-            printf("La combinaison FULLHOUSE est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 9 pour la choisir !");
+            printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 9 pour la choisir !\n");
             tab_combi[4][0] = 9;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -427,8 +429,8 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_low_spe == 0 && fullhouse == true) {
         if ((compt_high == 3 && compt_mid == 2) ^ (compt_high == 2 && compt_mid == 3)) {
             *somme_low_spe = 25;
-            printf("La combinaison FULLHOUSE est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 9 pour la choisir !");
+            printf("La combinaison FULLHOUSE est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 9 pour la choisir !\n");
             tab_combi[5][0] = 9;
             tab_combi[5][1] = *somme_low_spe;
         }
@@ -438,15 +440,15 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     if (*somme_high_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_high_spe = somme_high;
-            printf("La combinaison CARRE est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 8 pour la choisir !");
+            printf("La combinaison CARRE est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 8 pour la choisir !\n");
             tab_combi[3][0] = 8;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if (compt_mid == 4) {
             *somme_high_spe = somme_mid;
-            printf("La combinaison CARRE est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 8 pour la choisir !");
+            printf("La combinaison CARRE est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 8 pour la choisir !\n");
             tab_combi[3][0] = 8;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -454,15 +456,15 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_mid_spe = somme_high;
-            printf("La combinaison CARRE est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 8 pour la choisir !");
+            printf("La combinaison CARRE est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 8 pour la choisir !\n");
             tab_combi[4][0] = 8;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if (compt_mid == 4) {
             *somme_mid_spe = somme_mid;
-            printf("La combinaison CARRE est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 8 pour la choisir !");
+            printf("La combinaison CARRE est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 8 pour la choisir !\n");
             tab_combi[4][0] = 8;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -470,15 +472,15 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_low_spe == 0 && carre == true) {
         if (compt_high == 4) {
             *somme_low_spe = somme_high;
-            printf("La combinaison CARRE est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 8 pour la choisir !");
+            printf("La combinaison CARRE est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 8 pour la choisir !\n");
             tab_combi[5][0] = 8;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if (compt_mid == 4) {
             *somme_low_spe = somme_mid;
-            printf("La combinaison CARRE est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 8 pour la choisir !");
+            printf("La combinaison CARRE est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 8 pour la choisir !\n");
             tab_combi[5][0] = 8;
             tab_combi[5][1] = *somme_low_spe;
         }
@@ -488,22 +490,22 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     if (*somme_high_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_high_spe = somme_high;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[3][0] = 7;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if (compt_mid == 3) {
             *somme_high_spe = somme_mid;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[3][0] = 7;
             tab_combi[3][1] = *somme_high_spe;
         }
         else if (compt_low == 3) {
             *somme_high_spe = somme_low;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_high_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_high_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[3][0] = 7;
             tab_combi[3][1] = *somme_high_spe;
         }
@@ -511,22 +513,22 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_mid_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_mid_spe = somme_high;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[4][0] = 7;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if (compt_mid == 3) {
             *somme_mid_spe = somme_mid;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[4][0] = 7;
             tab_combi[4][1] = *somme_mid_spe;
         }
         else if (compt_low == 3) {
             *somme_mid_spe = somme_low;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_mid_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_mid_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[4][0] = 7;
             tab_combi[4][1] = *somme_mid_spe;
         }
@@ -534,22 +536,22 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
     else if (*somme_low_spe == 0 && brelan == true) {
         if (compt_high == 3) {
             *somme_low_spe = somme_high;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[5][0] = 7;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if (compt_mid == 3) {
             *somme_low_spe = somme_mid;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[5][0] = 7;
             tab_combi[5][1] = *somme_low_spe;
         }
         else if (compt_low == 3) {
             *somme_low_spe = somme_low;
-            printf("La combinaison BRELAN est disponible pour %d points", *somme_low_spe);
-            printf("Tapez 7 pour la choisir !");
+            printf("La combinaison BRELAN est disponible pour %d points\n", *somme_low_spe);
+            printf("Tapez 7 pour la choisir !\n");
             tab_combi[5][0] = 7;
             tab_combi[5][1] = *somme_low_spe;
         }
@@ -557,13 +559,12 @@ void combinaison_spe(t_de des, int *somme_high_spe, int *somme_mid_spe, int *som
 }
 
 //Cette procédure demande au joueur quelle combinaison il veut jouer
-void combinaison_tour(int somme_high, int somme_mid, int somme_low, int somme_high_spe, int somme_mid_spe, int somme_low_spe, 
-                      int compt_high, int compt_mid, int compt_low, int *choice) {
+void combinaison_tour(int *choice) {
     printf("Quelle combinaison souhaitez vous donc choisir : ");
     scanf("%d", &*choice);
 }
 
-void int_to_str(int tab_combi_int[6][2], char tab_combi_str[6][2][5], int indice_x, int indice_y){
+void int_to_str(int tab_combi_int[6][2], char tab_combi_str[6][2][5], int indice_y, int indice_x){
     sprintf(tab_combi_str[indice_y][indice_x], "%d", tab_combi_int[indice_y][indice_x]);
 }
 
@@ -573,133 +574,133 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
     if(strcmp(curr_player, player1) == 0) {
         switch(*choice){
             case 12:
-                feuille_marq[2][15] = tab_combi_str[3][1];
+                strcpy(feuille_marq[2][15],tab_combi_str[3][1]);
                 break;
             case 11:
                 if(tab_combi_int[3][0] == 11){
-                    feuille_marq[2][14] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][14],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][1] == 11){
-                    feuille_marq[2][14] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][14],tab_combi_str[4][1]);
                     break;
                 }
             case 10:
                 if(tab_combi_int[3][0] == 10){
-                    feuille_marq[2][13] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][13],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 10){
-                    feuille_marq[2][13] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][13],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 10){
-                    feuille_marq[2][13] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][13],tab_combi_str[5][1]);
                     break;
                 }
             case 9:
                 if(tab_combi_int[3][0] == 9){
-                    feuille_marq[2][12] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][12],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 9){
-                    feuille_marq[2][12] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][12],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 9){
-                    feuille_marq[2][12] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][12],tab_combi_str[5][1]);
                     break;
                 }
             case 8:
                 if(tab_combi_int[3][0] == 8){
-                    feuille_marq[2][11] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][11],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 8){
-                    feuille_marq[2][11] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][11],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 8){
-                    feuille_marq[2][11] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][11],tab_combi_str[5][1]);
                     break;
                 }
             case 7:
                 if(tab_combi_int[3][0] == 7){
-                    feuille_marq[2][10] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][10],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 7){
-                    feuille_marq[2][10] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][10],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 7){
-                    feuille_marq[2][10] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][10],tab_combi_str[5][1]);
                     break;
                 }
             case 6:
                 if(tab_combi_int[0][0] == 6){
-                    feuille_marq[2][7] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][7],tab_combi_str[0][1]);
                     break;
                 }
             case 5:
                 if(tab_combi_int[0][0] == 5){
-                    feuille_marq[2][6] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][6],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 5){
-                    feuille_marq[2][6] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][6],tab_combi_str[1][1]);
                     break;
                 }
             case 4:
                 if(tab_combi_int[0][0] == 4){
-                    feuille_marq[2][5] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][5],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 4){
-                    feuille_marq[2][5] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][5],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 4){
-                    feuille_marq[2][5] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][5],tab_combi_str[2][1]);
                     break;
                 }
             case 3:
                 if(tab_combi_int[0][0] == 3){
-                    feuille_marq[2][4] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][4],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 3){
-                    feuille_marq[2][4] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][4],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 3){
-                    feuille_marq[2][4] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][4],tab_combi_str[2][1]);
                     break;
                 }
             case 2:
                 if(tab_combi_int[0][0] == 2){
-                    feuille_marq[2][3] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][3],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 2){
-                    feuille_marq[2][3] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][3],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 2){
-                    feuille_marq[2][3] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][3],tab_combi_str[2][1]);
                     break;
                 }
             case 1:
                 if(tab_combi_int[0][0] == 1){
-                    feuille_marq[2][2] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][2],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 1){
-                    feuille_marq[2][2] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][2],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 1){
-                    feuille_marq[2][2] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][2],tab_combi_str[2][1]);
                     break;
                 }  
         }
@@ -707,141 +708,141 @@ void update_feuille_marq(t_fmarq feuille_marq ,char tab_combi_str[6][2][5], int 
     else if(strcmp(curr_player, player2) == 0) {
         switch(*choice){
             case 12:
-                feuille_marq[2][15] = tab_combi_str[3][1];
+                strcpy(feuille_marq[2][15],tab_combi_str[3][1]);
                 break;
             case 11:
                 if(tab_combi_int[3][0] == 11){
-                    feuille_marq[2][14] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][14],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][1] == 11){
-                    feuille_marq[2][14] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][14],tab_combi_str[4][1]);
                     break;
                 }
             case 10:
                 if(tab_combi_int[3][0] == 10){
-                    feuille_marq[2][13] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][13],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 10){
-                    feuille_marq[2][13] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][13],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 10){
-                    feuille_marq[2][13] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][13],tab_combi_str[5][1]);
                     break;
                 }
             case 9:
                 if(tab_combi_int[3][0] == 9){
-                    feuille_marq[2][12] = tab_combi_str[3][1];
+                   strcpy(feuille_marq[2][12],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 9){
-                    feuille_marq[2][12] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][12],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 9){
-                    feuille_marq[2][12] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][12],tab_combi_str[5][1]);
                     break;
                 }
             case 8:
                 if(tab_combi_int[3][0] == 8){
-                    feuille_marq[2][11] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][11],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 8){
-                    feuille_marq[2][11] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][11],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 8){
-                    feuille_marq[2][11] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][11],tab_combi_str[5][1]);
                     break;
                 }
             case 7:
                 if(tab_combi_int[3][0] == 7){
-                    feuille_marq[2][10] = tab_combi_str[3][1];
+                    strcpy(feuille_marq[2][10],tab_combi_str[3][1]);
                     break;
                 }
                 else if(tab_combi_int[4][0] == 7){
-                    feuille_marq[2][10] = tab_combi_str[4][1];
+                    strcpy(feuille_marq[2][10],tab_combi_str[4][1]);
                     break;
                 }
                 else if(tab_combi_int[5][0] == 7){
-                    feuille_marq[2][10] = tab_combi_str[5][1];
+                    strcpy(feuille_marq[2][10],tab_combi_str[5][1]);
                     break;
                 }
             case 6:
                 if(tab_combi_int[0][0] == 6){
-                    feuille_marq[2][7] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][7],tab_combi_str[0][1]);
                     break;
                 }
             case 5:
                 if(tab_combi_int[0][0] == 5){
-                    feuille_marq[2][6] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][6],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 5){
-                    feuille_marq[2][6] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][6],tab_combi_str[1][1]);
                     break;
                 }
             case 4:
                 if(tab_combi_int[0][0] == 4){
-                    feuille_marq[2][5] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][5],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 4){
-                    feuille_marq[2][5] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][5],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 4){
-                    feuille_marq[2][5] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][5],tab_combi_str[2][1]);
                     break;
                 }
             case 3:
                 if(tab_combi_int[0][0] == 3){
-                    feuille_marq[2][4] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][4],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 3){
-                    feuille_marq[2][4] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][4],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 3){
-                    feuille_marq[2][4] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][4],tab_combi_str[2][1]);
                     break;
                 }
             case 2:
                 if(tab_combi_int[0][0] == 2){
-                    feuille_marq[2][3] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][3],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 2){
-                    feuille_marq[2][3] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][3],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 2){
-                    feuille_marq[2][3] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][3],tab_combi_str[2][1]);
                     break;
                 }
             case 1:
                 if(tab_combi_int[0][0] == 1){
-                    feuille_marq[2][2] = tab_combi_str[0][1];
+                    strcpy(feuille_marq[2][2],tab_combi_str[0][1]);
                     break;
                 }
                 else if(tab_combi_int[1][0] == 1){
-                    feuille_marq[2][2] = tab_combi_str[1][1];
+                    strcpy(feuille_marq[2][2],tab_combi_str[1][1]);
                     break;
                 }
                 else if(tab_combi_int[2][0] == 1){
-                    feuille_marq[2][2] = tab_combi_str[2][1];
+                    strcpy(feuille_marq[2][2],tab_combi_str[2][1]);
                     break;
                 }  
         }
     }
 }
 
-void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], char player2[20], bool somme6, bool somme5, bool somme4, bool somme3, bool somme2, bool somme1,
-                bool brelan, bool carre, bool fullhouse, bool ptsuite, bool gdsuite, bool yams, bool chance){
+void updat_bool(t_fmarq feuille_marq, char curr_player[20], char player1[20], char player2[20], bool *somme6, bool *somme5, bool *somme4, bool *somme3, bool *somme2, bool *somme1,
+                bool *brelan, bool *carre, bool *fullhouse, bool *ptsuite, bool *gdsuite, bool *yams, bool *chance){
     if(strcmp(curr_player, player1) == 0){
         if(strcmp(feuille_marq[2][1],"\t\t") != 0){
             somme1 = false;
@@ -940,7 +941,7 @@ int main() {
         "|Total supérieur     ","|\t\t","|\t|",
         "|7 Brelan            ","|\t\t","|\t|",
         "|8 Carré             ","|\t\t","|\t|",
-        "|9 FullHouse        ","|\t\t","|\t|",
+        "|9 FullHouse         ","|\t\t","|\t|",
         "|10 Petite Suite     ","|\t\t","|\t|",
         "|11 Grande Suite     ","|\t\t","|\t|",
         "|12 YAMS             ","|\t\t","|\t|",
@@ -950,17 +951,70 @@ int main() {
         "└-------------------","-┴---------","-┴-------┘",
     };
 
+    char player1[20], player2[20], curr_player[20];
+
     t_de des;
+
     int somme_high, somme_mid, somme_low;
     int compt_high, compt_mid, compt_low;
 
+    int somme_high_spe, somme_mid_spe, somme_low_spe;
+
     int p_choice;
 
-    bool bool6, bool5, bool4, bool3, bool2, bool1;
+    bool somme6_p1, somme5_p1, somme4_p1, somme3_p1, somme2_p1, somme1_p1;
+    bool somme6_p2, somme5_p2, somme4_p2, somme3_p2, somme2_p2, somme1_p2;
 
-    bool6 = true; bool5 = true; bool4 = true; bool3 = true; bool2 = true; bool1 = true;
+    bool brelan_p1, carre_p1, fullhouse_p1, ptsuite_p1, gdsuite_p1, yams_p1, chance_p1;
+    bool brelan_p2, carre_p2, fullhouse_p2, ptsuite_p2, gdsuite_p2, yams_p2, chance_p2;
 
-    brelan = true; carre = true; fullhouse = true; ptsuite = true; gdsuite = true; yams = true; chance = true;
+    somme6_p1 = true; somme5_p1 = true; somme4_p1 = true; somme3_p1 = true; somme2_p1 = true; somme1_p1 = true;
+    somme6_p2 = true; somme5_p2 = true; somme4_p2 = true; somme3_p2 = true; somme2_p2 = true; somme1_p2 = true;
+    
+    brelan_p1 = true; carre_p1 = true; fullhouse_p1 = true; ptsuite_p1 = true; gdsuite_p1 = true; yams_p1 = true; chance_p1 = true;
+    brelan_p2 = true; carre_p2 = true; fullhouse_p2 = true; ptsuite_p2 = true; gdsuite_p2 = true; yams_p2 = true; chance_p2 = true;
 
-    lancer_de(des);
+    int tab_combi_int[6][2];
+    char tab_combi_str[6][2][5];
+
+    player(player1, player2);
+    aff_f_marq(feuille_marq);
+
+    for(int i = 0; i < 26; i++){
+        current_player(player1, player2, curr_player, i);
+        if(strcmp(curr_player, player1) == 0){
+            bloq_de(des);
+
+            combinaison(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, somme6_p1, somme5_p1, somme4_p1, somme3_p1, somme2_p1, somme1_p1, 
+                        tab_combi_int[6][2]);
+            combinaison_spe(des, &somme_high_spe, &somme_mid_spe, &somme_low_spe, somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low, brelan_p1, carre_p1, 
+                            fullhouse_p1, ptsuite_p1, gdsuite_p1, yams_p1, chance_p1, tab_combi_int[6][2]);
+            combinaison_tour(&p_choice);
+
+            int_to_str(tab_combi_int, tab_combi_str, p_choice, 1);
+
+            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, p_choice, curr_player, player1, player2);
+
+            aff_f_marq(feuille_marq);
+            updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p1, &somme5_p1, &somme4_p1, &somme3_p1, &somme2_p1, &somme1_p1, 
+                       &brelan_p1, &carre_p1, &fullhouse_p1, &ptsuite_p1, &gdsuite_p1, &yams_p1, &chance_p1);
+        }
+        else if(strcmp(curr_player, player2) == 0){
+            bloq_de(des);
+
+            combinaison(des, &somme_high, &somme_mid, &somme_low, &compt_high, &compt_mid, &compt_low, somme6_p2, somme5_p2, somme4_p2, somme3_p2, somme2_p2, somme1_p2, 
+                        tab_combi_int[6][2]);
+            combinaison_spe(des, &somme_high_spe, &somme_mid_spe, &somme_low_spe, somme_high, somme_mid, somme_low, compt_high, compt_mid, compt_low, brelan_p2, carre_p2, 
+                            fullhouse_p2, ptsuite_p2, gdsuite_p2, yams_p2, chance_p2, tab_combi_int[6][2]);
+            combinaison_tour(&p_choice);
+
+            int_to_str(tab_combi_int, tab_combi_str, p_choice, 1);
+
+            update_feuille_marq(feuille_marq, tab_combi_str, tab_combi_int, p_choice, curr_player, player1, player2);
+
+            aff_f_marq(feuille_marq);
+            updat_bool(feuille_marq, curr_player, player1, player2, &somme6_p2, &somme5_p2, &somme4_p2, &somme3_p2, &somme2_p2, &somme1_p2, 
+                       &brelan_p2, &carre_p2, &fullhouse_p2, &ptsuite_p2, &gdsuite_p2, &yams_p2, &chance_p2);
+        }
+    }
 }
